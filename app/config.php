@@ -1,7 +1,7 @@
 <?php
 return [
     'url_domain_deploy' => true,
-    'url_domain_root'   => '.test.com',
+    'url_domain_root'   => '.dddaigou.net',
     'url_route_on'      => true, // 路由开关
     'base_url'          => '', // 隐藏index.php
     'url_html_suffix'   => '.html',
@@ -31,7 +31,7 @@ return [
     // SESSION
     'session'       => [
         'auto_start'=> true,
-        'domain'    => '.test.com',
+        'domain'    => '.dddaigou.net',
         'type'      => 'redis',
         'host'      => '127.0.0.1',
         'port'      => 6379,
@@ -46,6 +46,6 @@ return [
     // api
     'api'               => [
         'url'   => 'http://127.0.0.1/',
-        'host'  => 'api.test.com'
+        'host'  => 'api.dddaigou.net'
     ],
 ];

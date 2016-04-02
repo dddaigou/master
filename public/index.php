@@ -15,10 +15,10 @@ if (PHP_SAPI == 'cli') {
     }
 } else {
     // 定义环境常量
-    if (preg_match('/dev\.test\.com$/i', $_SERVER['HTTP_HOST'])) {
+    if (preg_match('/dev\.dddaigou\.net$/i', $_SERVER['HTTP_HOST'])) {
         $app_status = 'dev';
         $app_debug  = true;
-    } elseif (preg_match('/debug\.test\.com$/i', $_SERVER['HTTP_HOST'])) {
+    } elseif (preg_match('/debug\.dddaigou\.net$/i', $_SERVER['HTTP_HOST'])) {
         $app_status = 'debug';
         $app_debug  = true;
     } else {
