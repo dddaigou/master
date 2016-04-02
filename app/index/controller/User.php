@@ -188,7 +188,11 @@ class User extends Common
     {
         $res    = SmsApi::checkOtp(Input::post(),$is_return);
         if (isDev()) {
-            $res  = ['code'=>200,'msg'=>'测试：跳过！'];
+            if ($is_return) {
+                $res  = ['code'=>200,'msg'=>'测试：跳过！'];
+            }else{
+                $res  = json_encode(['code'=>200,'msg'=>'测试：跳过！']);
+            }
         }
         if($is_return){
             return $res;

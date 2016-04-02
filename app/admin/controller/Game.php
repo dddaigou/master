@@ -166,7 +166,6 @@ class Game extends Common
         // 按注音導出配置
         $configs        = \logic\game\Config::getAllGameByPhonetic();
         F('game_phonetic.inc', $configs);
-        dump();
         return Response::success('更新配置成功', '', U('game/index'));
     }
 }
