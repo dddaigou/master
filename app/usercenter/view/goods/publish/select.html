@@ -1,0 +1,69 @@
+{extend name="index@view/public/base"/}
+{block name="title"}
+  <title>刊登商品-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/publish/publish_main.css">
+{/block}
+
+{block name="head"}
+  {include file="index@view/public/head_lite"}
+  <div class="content-width publish-nav clearfix">
+    <div class="p-stp p-now">
+      <b>1</b>
+      <span>選擇商品分類</span>
+    </div>
+    <div class="p-stp">
+      <b>2</b>
+      <span>填寫商品詳細信息</span>
+    </div>
+    <div class="p-stp">
+      <b>3</b>
+      <span>刊登成功</span>
+    </div>
+    <div class="justify-fix"></div>
+  </div>
+{/block}
+{block name="content"}
+  <div class="content-width step1-box" data-gid="{$game_id}" data-sid="{$server_id}" data-tid="{$type}">
+    <div class="sb-tag">
+      您當前選擇的是：
+      <span class="tag-game"></span>
+      <span class="tag-server"></span>
+      <span class="tag-type"></span>
+    </div>
+    <div class="sb-sel-box clearfix">
+      <div class="sb-g-box sb-box">
+        <div class="g-box-input">
+          <input class="g-search" type="text" placeholder="輸入關鍵字搜尋">
+          <i class="search-icon"></i>
+        </div>
+        <ul class="g-box-ul sb-sel-ul"></ul>
+      </div>
+      <div class="sb-s-box sb-box" style="margin-left:58px;">
+        <ul class="s-box-ul sb-sel-ul"></ul>
+      </div>
+      <div class="sb-t-box sb-box" style="margin-left:58px;">
+        <ul class="t-box-ul sb-sel-ul"></ul>
+      </div>
+    </div>
+    <div class="sb-ft clearfix">
+      <div class="sb-submit hk-btn hk-orange-btn">繼續刊登</div>
+      <a href="javascript:;" class="no-game">找不到遊戲、伺服器？</a>
+    </div>
+    <form action="{:U('goods.publish/write@i')}" method="GET" id="submitForm" data-card="{$is_card_seller}">
+      {if condition="$is_card_seller eq false"}{//遊戲刊登}
+      <input type="hidden" name="game_id">
+      <input type="hidden" name="server_id">
+      <input type="hidden" name="type">
+      {else /}
+      <input type="hidden" name="card_id">
+      <input type="hidden" name="denom_id">
+      {/if}
+    </form>
+  </div>
+{/block}
+{block name="foot"}
+  {include file="index@view/public/foot"}
+  <script>
+    seajs.use('src/publish/step1',function(){});
+  </script>
+{/block}

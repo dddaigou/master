@@ -1,0 +1,18 @@
+#!/bin/bash
+echo testing
+echo $CI
+echo $GITLAB_CI
+echo $CI_SERVER
+echo $CI_SERVER_NAME
+echo $CI_SERVER_VERSION
+echo $CI_SERVER_REVISION
+echo $CI_BUILD_REF
+echo $CI_BUILD_TAG
+echo $CI_BUILD_NAME
+echo $CI_BUILD_STAGE
+echo $CI_BUILD_REF_NAME
+echo $CI_BUILD_ID
+echo $CI_BUILD_REPO
+echo $CI_BUILD_TRIGGERED
+echo $CI_PROJECT_ID
+echo $CI_PROJECT_DIR

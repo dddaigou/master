@@ -1,0 +1,91 @@
+{layout name='layout'}
+<form role="form" class="form-inline definewidth m20" action="/goods/publish" method="POST">
+<table>
+    <tr>
+        <td>选择遊戲：</td>
+        <td>
+            {if condition="$Think.get.id gt 0"}
+                <input type="hidden" name='game_id' value="{$edit_goods['game_id']}">{$games[$edit_goods['game_id']]}
+            {else}
+                <select name="game_id" class="chosen">
+                    <option value="">請選擇</option>
+                    {foreach name="games" key="game_id" item="game_name"}
+                    <option value="{$game_id}" {eq name='Think.get.game_id' value="$game_id" }selected{/eq}>{$game_name}</option>
+                    {/foreach}
+                </select>
+            {/if}
+        </td>
+    </tr>
+    <tr>
+        <td>选择伺服：</td>
+        <td>
+            <select name="server_id" class="chosen">
+                <option value="">請選擇</option>
+                {foreach name="servers" key="server_id" item="server_name"}
+                <option value="{$server_id}" {eq name='edit_goods.server_id' value="$server_id"}selected{/eq}>{$server_name}</option>
+                {/foreach}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>商品類型：</td>
+        <td>
+            <select name='type' class="chosen">
+                <option value="0">請選擇</option>
+                {foreach name="types" key="type_id" item="type_name"}
+                <option value="{$type_id}" {eq name="edit_goods.type" value="$type_id"}selected{/eq}>{$type_name}</option>
+                {/foreach}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>賣家編號：</td>
+        <td><input type='number' name='seller_id' value="{$edit_goods['seller_id']}"></input></td>
+    </tr>
+    <tr>
+        <td>商品標題：</td>
+        <td><input type="text"  name='title' value="{$edit_goods['title']}"></input></td>
+    </tr>
+    <tr>
+        <td>商品庫存：</td>
+        <td><input type="number" name='stock' value="{$edit_goods['stock']}"></input></td>
+    </tr>
+    <tr>
+        <td>原　　價：</td>
+        <td><input type="number" name='cost_price' value="{$edit_goods['cost_price']}"></input></td>
+    </tr>
+    <tr>
+        <td>折 扣 價 ：</td>
+        <td><input type="number" name='price' value="{$edit_goods['price']}"></input></td>
+    </tr>
+    <tr>
+        <td>承诺移交时间：</td>
+        <td>
+<select name='transfer_time'>
+    <option value="15" {eq name="edit_goods.transfer_time" value="15"}selected{/eq}>15分鐘</option>
+    <option value="30" {eq name="edit_goods.transfer_time" value="30"}selected{/eq}>半小時</option>
+    <option value="60" {eq name="edit_goods.transfer_time" value="60"}selected{/eq}>1小時</option>
+    <option value="120" {eq name="edit_goods.transfer_time" value="120"}selected{/eq}>2小時</option>
+    <option value="300" {eq name="edit_goods.transfer_time" value="300"}selected{/eq}>5小時</option>
+    <option value="1440" {eq name="edit_goods.transfer_time" value="1440"}selected{/eq}>24小時</option>
+</select>
+        </td>
+    </tr>
+    <tr>
+        <td>商品詳情：</td>
+        <td><textarea type="text" name='description'>{$edit_goods['description']}</textarea> </td>
+    </tr>
+    <tr>
+        <td><input type="submit" value="確認" class='btn btn-primary'></input></td>
+        <td><a href="/goods/index" type="button" class="btn" >返回到列表</a></td>
+    </tr>
+</table>
+<input type="hidden" name='post_client' value="web">
+<input type="hidden" name='id' value="{$edit_goods['id']}">
+</form>
+<script type="text/javascript">
+    $('select[name=game_id]').change(function(){
+        var game_id = $(this).val();
+        window.location.href = "{:U('publish')}?game_id="+game_id;
+    });
+</script>

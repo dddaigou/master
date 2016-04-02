@@ -1,0 +1,51 @@
+{layout name='layout'}
+<form role="form" class="form-inline definewidth m20" action="" method="get">
+    <select name="type" style="width:80px;">
+        <option value="">全部</option>
+        {foreach name="fields" item="field_name" key="field"}
+        <option value="{$field}" {eq name="Think.get.field" value="$field"}selected{/eq}>{$field_name}</option>
+        {/foreach}
+    </select>
+    <input type="text" name='keyword' value="{$Think.get.keyword|htmlspecialchars}" />
+    <input type="submit" value="搜索" class='btn btn-primary'>
+</form>
+<br>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>标题</th>
+        <th>分类</th>
+        <th>标题</th>
+        <th>提交人</th>
+        <th>提交时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {foreach name='rows' item='row'}
+       <tr>
+            <td>{$row.session_id}</td>
+            <td>
+            </td>
+            <td>{$row.category_id|\\logic\\feedback\\Category::get}</td>
+            <td>{$row.title|htmlspecialchars}</td>
+            <td>
+            {notempty name="row.user_id"}
+            {$row.user_id|\\logic\\user\\User::getNameById} (No.{$row.user_id})
+            {else/}
+            游客
+            {/notempty}
+            </td>
+            <td>{$row.post_time}</td>
+            <td>
+                <a href="{:U('view')}?id={$row.id}">查看</a>
+                <a href="{:U('reply')}?id={$row.id}">回复</a>
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<div width='50%'>{$pager}</div>
+
+<script>
+
+</script>

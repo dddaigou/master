@@ -1,0 +1,52 @@
+<div class="head-nav">
+  <div class="content-width clearfix">
+    <div class="head-login">
+      {neq name='Think.session.user_id' value=''}
+        您好：<a href="{:U('/@i')}">{$Think.session.user_name}(NO.{$Think.session.user_id})</a> <a href="{:U('user/logout@www')}">[登出]</a>
+      {else /}
+        您好：歡迎來到香港8591！<a href="{:U('user/login')}" style="color:#6c6c6c;">請登入</a> <a href="{:U('user/reg')}" style="color:#ff4e00;">免費註冊</a>
+      {/neq}
+    </div> 
+    <div class="head-link">
+      <div class="hl-item l-my85">
+        <span class="hl-span">我的8591</span>
+        <div class="hl-menu">
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+        </div>
+      </div>
+      <div class="hl-item l-cart">
+        <span class="no-sub-menu">購物車</span>
+      </div>
+      <div class="hl-item l-saler">
+        <span class="hl-span">買家中心</span>
+        <div class="hl-menu">
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+        </div>
+      </div>
+      <div class="hl-item l-contact">
+        <span class="hl-span">聯絡客服</span>
+        <div class="hl-menu">
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+        </div>
+      </div>
+      <div class="hl-item l-map">
+        <span class="hl-span">網站地圖</span>
+        <div class="hl-menu">
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+          <a href="#">我的訂單</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

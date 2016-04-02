@@ -1,0 +1,68 @@
+{layout name='layout'}
+<form action="{:U()}" method="post" class="definewidth m20">
+<input type="hidden" name="id" value="{$row.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">遊戲ID</td>
+            <td>
+                {present name="row.id"}
+                <input type="hidden" name="id" value="{$row.id}" />{$row.id}
+                {else/}
+                自動生成
+                {/present}
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">遊戲類型</td>
+            <td>
+                <select name="type">
+                    <option value=''>選擇類型</option>
+                    {foreach name='types' item='type' key='key'}
+                    <option value="{$key}" {eq name="row.type" value='$key'}selected{/eq}>{$type}</option>
+                    {/foreach}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">遊戲名稱</td>
+            <td>
+                <input type="text" name="name" value="{$row.name}" />&nbsp;
+                显示颜色：<input type="text" class="cxcolor" name="color" value="{$row.color}" readonly style="width: 18px; height: 18px; padding: 0; border: none; background: #000 url({$Think.config.static_url}/admin/images/jquery.cxcolor.png) no-repeat; font-size: 0; line-height: 0; vertical-align: middle; cursor: pointer;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">顯示排序</td>
+            <td><input type="number" name="taxis" value="{$row.taxis}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">關聯商品</td>
+            <td>
+                <select name="goods_type[]" multiple='multiple' size="10" class="chosen">
+                    {foreach name='goods_types' key='type_id' item='type_name'}
+                    <option value="{$type_id}" {in name='type_id' value='$row["goods_type"]'}selected{/in}>{$type_name}</option>
+                    {/foreach}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">相关属性</td>
+            <td>
+                <label><input type="checkbox" name="is_new" value="1" {eq name="row.is_new" value="1" }checked{/eq} /> 新游戏</label>
+                <label><input type="checkbox" name="is_hot" value="1" {eq name="row.is_hot" value="1" }checked{/eq} /> 热门游戏</label>
+                <label><input type="checkbox" name="is_hidden" value="1" {eq name="row.is_hidden" value="1" }checked{/eq} /> 隱藏游戏</label>
+                <label><input type="checkbox" name="is_deny_publish" value="1" {eq name="row.is_deny_publish" value="1" }checked{/eq} /> 禁止刊登</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">遊戲幣單位</td>
+            <td><input type="text" name="currency_unit" value="{$row.currency_unit}" /> (用,隔開)</td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <a href='{:U("index")}' type="button" class="btn btn-success" name="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

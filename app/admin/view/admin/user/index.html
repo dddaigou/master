@@ -1,0 +1,42 @@
+{layout name='layout'}
+<form class="form-inline definewidth m20" action="{:U()}" method="get">    
+    搜索：
+    <input type="text" name="keyword" id="keyword"class="abc input-default" placeholder="" value="{$keyword}">
+    <button type="submit" class="btn btn-primary">查询</button>
+    <a href="{:U('add')}" type="button" class="btn btn-success" id="addnew">新增</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>工号</th>
+        <th>姓名</th>
+        <th>昵称</th>
+        <th>权限组</th>
+        <th>增加时间</th>
+        <th>最后登录时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+        {foreach name='rows' item='row'}
+         <tr>
+            <td>{$row.id}</td>
+            <td>{$row.realname}</td>
+            <td>{$row.nickname}</td>
+            <td>{$row.group_id|\\logic\\admin\\Group::get}</td>
+            <td>{$row.create_time}</td>
+            <td>{$row.last_login_time}</td>
+            <td>
+                <a href="{:U('edit')}?id={$row.id}">编辑</a>    
+                <a data-confirm="確定刪除？" href="{:U('del')}?id={$row.id}">刪除</a>                
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<script>
+$(function(){
+    $('[data-confirm]').click(function(){
+        var text = $(this).data('confirm');
+        if(!confirm(text)) return false;
+    });
+});
+</script>

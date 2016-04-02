@@ -1,0 +1,75 @@
+{layout name='layout'}
+<form role="form" class="form-inline definewidth m20" action="/goods/index" method="get">
+    商品類型：
+    <select name='type' class="chosen">
+        <option value="0">請選擇</option>
+        {foreach name="types" key="type_id" item="type_name"}
+        <option value="{$type_id}" {eq name="Think.get.type" value="$type_id"}selected{/eq}>{$type_name}</option>
+        {/foreach}
+    </select>
+    <br>
+    遊戲編號：<input type="text" size="3" name='game_id' value="{$_POST['game_id']}"></input><br>
+    伺服編號：<input type="text" size="3" name='server_id' value="{$_POST['server_id']}"></input><br>
+    賣家編號：<input type="text" size="3" name='seller_id' value="{$_POST['seller_id']}"></input><br>
+    商品狀態：<select name='status'>
+        <option value="">可選擇</option>
+        {foreach name="statuses" key="status_id" item="status_name"}
+        <option value="{$status_id}" {in name="Think.get.status" value="$status_id"}selected{/in}>{$status_name}</option>
+        {/foreach}
+    </select><br>
+    刊登日期：
+    <input type="text" name='start_time' value="{$Think.get.start_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'}).skin('qianhuang');" /> 到
+    <input type="text" name='end_time' value="{$Think.get.end_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+    <br>
+    <input type="submit" value="搜索" class='btn btn-primary'>
+    &nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">刊登新商品</button>
+</form>
+<br>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>標題</th>
+        <th>賣家</th>
+        <th>庫存</th>
+        <th>價格</th>
+        <th>狀態</th>
+        <th>刊登時間</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {foreach name='rows' item='row'}
+       <tr>
+            <td>{$row.id}</td>
+            <td>
+                <div>{$row.title}</div>
+                <div>{$row.type|\\logic\\goods\\Type::getNameById} / {$row.game_id|\\logic\\game\\Game::getNameById} / {$row.server_id|\\logic\\game\\Server::getNameById}</div>
+            </td>
+            <td>{$row.seller_id|\\logic\\user\\User::getNameById}<br />No.{$row.seller_id}</td>
+            <td>{$row.stock}</td>
+            <td><notempty name="row.cost_price"><del>{$row.cost_price|number_format}</del></notempty> {$row.price|number_format}</td>
+            <td>{$row.status|\\logic\\goods\\Status::format}</td>
+            <td>{$row.post_time}</td>
+            <td>
+                <a href="{:U('publish')}?id={$row.id}">编辑</a>
+                <a href="javascript:;">客服管理</a>
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<div width='50%'>{$pager}</div>
+
+<script>
+$(function () {
+    $('#addnew').click(function(){
+        window.location.href="/goods/publish.html";
+    });
+});
+
+function del(id) {
+    if(confirm("确定要删除吗？")) {
+        var url = "index.html";
+        window.location.href=url;
+    }
+}
+</script>

@@ -1,0 +1,54 @@
+<form id="editForm" class="form-inline definewidth m20 hidden" action="{:U('save')}" method="POST">
+    <table>
+        <tr> 
+            <td>類型：</td>
+            <td>{$title['type']}</td>
+        </tr>
+        <tr> 
+            <td>{$title['name']}：</td>
+            <td><input type="text" name="name" value="{$edit_data['name']}" /></td>
+        </tr>
+        <tr> 
+            <td>{$title['game_id']}：</td>
+            <td><input type="number" name="game_id" value="{$edit_data.game_id}" /></td>
+        </tr>
+        {in name="type" value="1"}
+        <tr> 
+            <td>{$title['relative_id']}：</td>
+            <td><input type="number" name="relative_id" value="{$edit_data['relative_id']}" /></td>
+        </tr>
+        {/in}
+        <tr> 
+            <td>{$title['num']}：</td>
+            <td><input type="number" name="num" value="{$edit_data.num}" /></td>
+        </tr>
+        <tr> 
+            <td>{$title['rank']}：</td>
+            <td><input type="number" name="rank" value="{$edit_data.rank}" /></td>
+        </tr>
+        <tr> 
+            <td>{$title['link']}：</td>
+            <td><input type="text" name="link" value="{$edit_data['link']}" /></td>
+        </tr>
+        <tr> 
+            <td>{$title['other']}：</td>
+            <td><input type="text" name="other" value="{$edit_data['other']}" /></td>
+        </tr>
+        <tr> 
+            <td>狀態：</td>
+            <td>
+            不顯示<input type="radio" name="tag" value="0" {if condition='empty($edit_data.tag)'}checked{/if} />
+            顯示<input type="radio" name="tag" value="1" {eq name='edit_data.tag' value="1"}checked{/eq} />
+            置頂<input type="radio" name="tag" value="2" {eq name='edit_data.tag' value="2"}checked{/eq} />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit"  class="btn btn-success" value='保存' />
+                <input type="hidden" name="id" value="{$edit_data.id}" />
+                <input type="hidden" name="type" value="{$type}" />
+            </td>
+        </tr>
+    </table>
+</form>

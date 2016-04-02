@@ -1,0 +1,52 @@
+{extend name="public/base"/}
+{block name="title"}
+  <title>安全鎖解鎖-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/public/icons.css">
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/user/unlock.css">
+{/block}
+
+{block name="head"}
+  {include file="public/head_lite"}
+{/block}
+
+{block name="content"}
+<div class="content-width unlock-cnt" style="position:relative;">
+  <h3 class="ucnt-top clearfix">
+    <i class="hkico-info"></i>為了保障您帳戶的安全，帳號被安全鎖阻擋，請按照以下方式進行解鎖。
+  </h3>
+  <div class="unlock-box clearfix">
+    <div class="ub-left">
+      <div class="clearfix" style="margin-bottom:20px;">
+        <div class="ub-name"><span class="need">*</span>手機號碼：</div>
+        <div class="ub-value"><input class="phone" type="text" placeholder="您註冊的手機號碼"></div>
+        <div class="ub-ext ub-send hk-btn hk-orange-btn">發送驗證碼</div>
+      </div>
+      <div class="clearfix" style="margin-bottom:30px;">
+        <div class="ub-name"><span class="need">*</span>驗證碼：</div>
+        <div class="ub-value"><input class="phone-code" type="text" placeholder="收到的驗證碼" disabled></div>
+        <div class="ub-ext ub-msg"></div>
+      </div>
+      <div class="clearfix">
+        <div class="ub-name"></div>
+        <div class="ub-ext ub-submit hk-btn hk-orange-btn">進入8591寶物交易網</div>
+      </div>
+    </div>
+    <div class="ub-right">
+      <h4>什麼是帳號安全鎖？</h4>
+      <p>當帳號登入IP異動時，系統會自動鎖定，需要解鎖才能登入。</p>
+      <br>
+      <br>
+      <h4>IP為何異動？</h4>
+      <p>您所用的網路可能為浮動IP，當您每次連線時，IP都可能會改變。</p>
+    </div>
+
+  </div>
+</div>
+{/block}
+
+{block name="foot"}
+  {include file="public/foot"}
+  <script>
+    seajs.use('src/user/unlock',function(){});
+  </script>
+{/block}

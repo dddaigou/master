@@ -1,0 +1,24 @@
+{layout name='layout'}
+<form action="{:U()}" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">工号</td>
+            <td>{$row.id}</td>
+        </tr>
+        <tr>
+            <td class="tableleft">姓名</td>
+            <td><input type="text" name="realname" value="{$row.realname}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">昵称</td>
+            <td><input type="text" name="nickname" value="{$row.nickname}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <!-- <a href="{:U('index')}" class="btn btn-success" name="backid" id="backid">返回列表</a> -->
+            </td>
+        </tr>
+    </table>
+</form>

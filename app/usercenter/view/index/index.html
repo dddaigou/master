@@ -1,0 +1,167 @@
+{extend name="index@view/public/base_uc"/}
+{block name="title"}
+  <title>會員中心-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/public/icons.css">
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/usercenter/index.css">
+{/block}
+{block name="content"}
+<div class="u-idx-info clearfix">
+  <div class="info-user">
+    <span class="uc-idx-bg i-u-tx"></span>
+    <div class="i-u-welcome">
+      <h3>您好，<span style="color:#ff4e00;">劉嘉威</span></h3>
+      <p class="u-w-icons">
+        <span class="hk-24-18 v-phone"></span>
+        <span class="hk-24-18 v-id"></span>
+        <span class="hk-24-18 v-bag"></span>
+      </p>
+    </div>
+  </div>
+  <div class="info-account">
+    <p class="info-tle">帳戶餘額（元）</p>
+    <p class="info-val">{$user_data[user_money]}</p>
+    <p class="info-ext">
+      <a href="#" style="margin-right:10px;">明細</a>
+      <a href="#">提款</a>
+    </p>
+  </div>
+  <div class="info-credit">
+    <p class="info-tle">信用評價</p>
+    <p class="info-val">{$user_data[credit]}</p>
+  </div>
+</div>
+<div class="u-idx-msg clearfix">
+  <div class="u-i-buy">
+    <h3 class="u-m-tle">我是買家</h3>
+    <ul class="u-msg-ul">
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num"></span>
+          <span class="uc-idx-bg b-cart"></span>
+          購物車
+        </a>
+      </li>
+      <?php $a=1; ?>
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num" 
+          {gt name="$user_data.buyer.unpaid" value='0'}style="display:block;">{$user_data['buyer']['unpaid']}{else}>{/gt}
+          </span>
+          <span class="uc-idx-bg b-pay"></span>
+          待付款
+        </a>
+      </li>
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num" 
+          {gt name="$user_data.buyer.transfering" value='0'}style="display:block;">{$user_data['buyer']['transfering']}{else}>{/gt}
+          </span>
+          <span class="uc-idx-bg b-yj"></span>
+          移交中
+        </a>
+      </li>
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num"
+          {gt name="$user_data.buyer.recieving" value='0'}style="display:block;">{$user_data['buyer']['recieving']}{else}>{/gt}
+          </span>
+          <span class="uc-idx-bg b-ls"></span>
+          待領收
+        </a>
+      </li>
+      <li class="justify-fix"></li>
+    </ul>
+  </div>
+  <div class="u-i-sale">
+    <h3 class="u-m-tle">我是賣家</h3>
+    <ul class="u-msg-ul">
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num" 
+          {gt name="$user_data.seller.transfering" value='0'}style="display:block;">{$user_data['seller']['transfering']}{else}>{/gt}
+          </span>
+          <span class="uc-idx-bg s-yj"></span>
+          待移交
+        </a>
+      </li>
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num"
+          {gt name="$user_data.seller.recieving" value='0'}style="display:block;">{$user_data['seller']['recieving']}{else}>{/gt}
+          </span>
+          <span class="uc-idx-bg s-ls"></span>
+          領收中
+        </a>
+      </li>
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num"
+          {gt name="$user_data.seller.transfering" value='0'}style="display:block;">{$user_data['seller']['transfering']}{else}>{/gt}
+          </span>
+          <span class="uc-idx-bg s-pay"></span>
+          轉賬中
+        </a>
+      </li>
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num"></span>
+          <span class="uc-idx-bg s-ok"></span>
+          已完成
+        </a>
+      </li>
+      <li class="justify-fix"></li>
+    </ul>
+  </div>
+  <div class="u-i-help">
+    <span class="uc-idx-bg h-img"></span>
+    <ul class="u-help-msg">
+      <li class="u-msg-li">
+        <a href="#">
+          <span class="msg-num"></span>
+          <span class="uc-idx-bg h-ss"></span>
+          申訴回覆
+        </a>
+      </li>
+      <li class="u-msg-li" style="margin-left:20px;">
+        <a href="#">
+          <span class="msg-num" style="display:block;">23</span>
+          <span class="uc-idx-bg h-wd"></span>
+          未讀簡訊
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<table class="u-safe-info u-table">
+  <tr>
+    <th class="s-i-tle">帳號安全資訊</th>
+    <th class="s-i-ms">描述</th>
+    <th class="s-i-status">狀態</th>
+  </tr>
+  <tr>
+    <td class="s-i-tle">登入密碼</td>
+    <td class="s-i-ms">建議您使用英文加數字結合的密碼，安全性更高，定期更換密碼為帳密加雙重保險。</td>
+    <td class="s-i-status"><span class="s-i-set">已設置</span></td>
+  </tr>
+  <tr>
+    <td class="s-i-tle">支付密碼</td>
+    <td class="s-i-ms">用於資金相關的操作，默認設置時和登入密碼一致。</td>
+    <td class="s-i-status"><span class="s-i-un">未設置</span></td>
+  </tr>
+  <tr>
+    <td class="s-i-tle">行動電話認證</td>
+    <td class="s-i-ms">賣家出售商品必須通過的驗證之一，還可用於解除安全鎖、找回帳密與支付密碼。</td>
+    <td class="s-i-status"><span class="s-i-set">已設置</span></td>
+  </tr>
+  <tr>
+    <td class="s-i-tle">實名認證</td>
+    <td class="s-i-ms">賣家出售商品必須通過的驗證之一，認證您的身分證信息，完成後且使您的帳戶更安全。</td>
+    <td class="s-i-status"><span class="s-i-un">未設置</span></td>
+  </tr>
+</table>
+{/block}
+{block name="foot"}
+<script>
+  seajs.use('src/usercenter/index',function(){});
+</script>
+{/block}

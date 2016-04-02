@@ -1,0 +1,62 @@
+{include file="index@view/public/head_top"}
+<div class="head-main content-width clearfix">
+  <div class="hm-logo">
+    <a href="{:U('/@www')}"><img src="{$Think.config.static_url}/images/public/logo-hk.png" style="vertical-align:top;"></a>
+    <span class="slogan">|<span style="margin-left:5px;position:relative;top:2px;">香港</span></span>
+  </div>
+  <div class="hm-info">當前 <span style="font-size:20px;color:#c70000;">{$_count_user_online}人</span> 正在找虛寶 已成交 <span style="font-size:20px;color:#c70000;">{$_count_trade_complete}筆</span></div>
+  <div class="hm-share">
+    <span class="hm-s-icon"></span>
+    <div style="float:left;margin-left:5px;">
+      <p style="color:#ff4e00;font-size:15px;">香港8591寶物交易</p>
+      <p class="hm-s-area">
+        <span class="share-btn"></span>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="head-menu content-width">
+  <ul class="hm-ul clearfix">
+    <li class="on"><a href="#">首頁</a></li>
+    <li><a href="#">線上游戲</a></li>
+    <li><a href="#">手機遊戲</a></li>
+    <li><a href="#">網頁遊戲</a></li>
+    <li><a href="#">點數卡</a></li>
+    <li><a href="{:U('/@i')}">會員中心</a></li>
+  </ul>
+</div>
+<div class="head-search content-width">
+  <div class="hs-history">
+    <span>最近瀏覽遊戲</span>
+    <ul class="hsh-list">
+      <li>楓之谷</li>
+      <li>英雄聯盟LOL</li>
+      <li>楓之谷</li>
+    </ul>
+  </div>
+  <div class="hs-game hs-select">
+    <input class="hs-input g-val" type="text" data-val="" placeholder="遊戲">
+    <span class="top-icon"></span>
+    <ul class="hs-game-list hs-list">
+      <li>全部遊戲</li>
+    </ul>
+  </div>
+  <div class="hs-server hs-select">
+    <input class="hs-input s-val" type="text" data-val="" placeholder="伺服器">
+    <span class="top-icon"></span>
+    <ul class="hs-server-list hs-list">
+      <li>全部伺服器</li>
+    </ul>
+  </div>
+  <div class="hs-type hs-select">
+    <input class="hs-input t-val" type="text" data-val="" placeholder="物品種類">
+    <span class="top-icon"></span>
+    <ul class="hs-type-list hs-list">
+      <li>全部種類</li>
+    </ul>
+  </div>
+  <div class="hs-keyword">
+    <input id="keywordInput" type="text" placeholder="標題關鍵字搜尋">
+  </div>
+  <button class="hs-submit" type="button">搜尋</button>
+</div>

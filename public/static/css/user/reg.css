@@ -1,0 +1,149 @@
+.user-box{
+	margin-bottom: 60px;
+}
+.need{
+	display: inline-block;
+	color:#c70000;
+	margin-right: 6px;
+}
+.ub-line{
+	margin-bottom: 20px;
+}
+.ub-name,.ub-value,.ub-ext{
+	float: left;
+	margin-right: 6px;
+	height: 42px;
+}
+.ub-name{
+	width: 318px;
+	text-align: right;
+	font-size: 15px;
+	line-height: 42px;
+}
+.ub-value{
+	width: 328px;
+}
+.ub-value input[type=text],.ub-value input[type=password]{
+	width: 100%;
+	height: 42px;
+	border: 1px solid #e5e5e5;
+	color: #3c3c3c;
+	padding: 0 26px;
+}
+.ub-send{
+	height: 42px;
+	line-height: 42px;
+	padding: 0 10px;
+	font-size: 15px;
+	border-radius: 4px;
+}
+.ub-tip{
+	width: 328px;
+	background: #f4f4f4;
+	border: 1px solid #e5e5e5;
+	line-height: 42px;
+	padding: 0 20px;
+}
+.ub-text{
+	width: 524px; 
+}
+.ub-text input{
+	float: left;
+	margin: 2px 5px 0 0;
+}
+.ub-text p{
+	float: left;
+	width: 500px;
+	color: #6c6c6c;
+}
+.ub-text a{
+	color: #1882ef;
+}
+.ub-submit{
+	width: 246px;
+	border-radius: 4px;
+}
+.ub-l-tip{
+	padding: 5px 20px;
+    line-height: 16px;
+}
+.ub-e-tip{
+	border-color: #ebccd1;
+	background: #f2dede;
+	color: #a94442;
+}
+.ub-s-tip{
+	color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.ub-a-tip{
+	display: none;
+	background: #f4f4f4;
+    border: 1px solid #e5e5e5;
+	padding: 5px;
+	margin-top: 8px;
+	width: 438px;
+}
+/****註冊成功*[[*****/
+.reg-ok-top{
+	font-size: 24px;
+	line-height: 64px;
+	font-weight: 700;
+	margin-bottom: 56px;
+	padding-top: 78px;
+}
+.r-o-cnt{
+	background: #f0f0f0;
+	padding: 42px 96px;
+	height: 290px;
+}
+.r-o-cnt h4{
+	font-size: 15px;
+	margin-bottom: 18px;
+}
+.r-o-bk{
+	float: left;
+	width: 370px;
+	height: 166px;
+	background: #fff; 
+	padding: 24px 12px;
+}
+.o-b-img{
+	width: 76px;
+	height: 76px;
+	float: left;
+	background: #f0f0f0;
+}
+.o-b-txt{
+	float: left;
+	width: 250px;
+	height: 126px;
+	margin-left: 12px;
+}
+.o-b-txt h3{
+	font-size: 18px;
+	margin-bottom: 13px;
+}
+.o-b-txt p{
+	color: #6c6c6c;
+	margin-bottom: 16px;
+	line-height: 22px;
+}
+.o-b-btn{
+	float: left;
+	width: 76px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 15px;
+	border-radius: 4px;
+}
+.o-b-btn:active{
+	line-height: 31px!important;
+}
+.o-b-ft a{
+	float: left;
+	color: #ff4e00;
+	margin: 4px 0 0 28px;
+}
+/****註冊成功*]]*****/

@@ -1,0 +1,47 @@
+{layout name='layout'}
+<form action="{:U()}" method="post" class="definewidth m20">
+<input type="hidden" name="id" value="{$row.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">分组</td>
+            <td>
+                <select name='type'>
+                    <option value=''>选择分组</option>
+                    {foreach name='types' item='type'}
+                    <option value='{$type.type}' {eq name='type.type' value='$row["type"]'}selected{/eq}>{$type.type}</option>
+                    {/foreach}
+                </select>
+                {present name="row.id"}
+                <input type="hidden" name="id" value="{$row.id}" />
+                {else/} 新增
+                <input type="text" name="new_type" />
+                {/present}
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">配置名</td>
+            <td>
+                <input type="text" name="name" value="{$row.name}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">配置项</td>
+            <td>
+                <textarea name='value'>{$row.value|htmlspecialchars}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">备注</td>
+            <td>
+                <textarea name='remark'>{$row.remark|htmlspecialchars}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <a href='{:U("index")}' type="button" class="btn btn-success" name="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

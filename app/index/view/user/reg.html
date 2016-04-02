@@ -1,0 +1,66 @@
+{extend name="public/base"/}
+{block name="title"}
+  <title>用戶註冊-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/public/icons.css">
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/user/reg.css">
+{/block}
+
+{block name="head"}
+  {include file="public/head_lite"}
+{/block}
+
+{block name="content"}
+<div class="content-width user-box" style="position:relative;">
+  <div class="clearfix ub-line">
+    <div class="ub-name"><span class="need">*</span>手機號碼：</div>
+    <div class="ub-value"><input class="phone" type="text" placeholder="輸入您的手機號碼"></div>
+    <div class="ub-ext ub-send hk-btn hk-orange-btn">發送驗證碼</div>
+  </div>
+  <div class="clearfix ub-line">
+    <div class="ub-name"><span class="need">*</span>驗證碼：</div>
+    <div class="ub-value"><input class="phone-code" type="text" placeholder="輸入您收到的驗證碼" disabled></div>
+    <div class="ub-ext ub-tip" style="display:none;"></div>
+  </div>
+  <div class="clearfix ub-line">
+    <div class="ub-name"><span class="need">*</span>帳號：</div>
+    <div class="ub-value"><input class="account" type="text" placeholder="設置您的帳號"></div>
+    <div class="ub-ext ub-tip"><span class="ub-icon ub-i-icon"></span>長度為6-12字符，由字母、數字及_符號組成</div>
+  </div>
+  <div class="clearfix ub-line">
+    <div class="ub-name"><span class="need">*</span>密碼：</div>
+    <div class="ub-value"><input class="psw" type="password" placeholder="設置您的密碼"></div>
+    <div class="ub-ext ub-tip"><span class="ub-icon ub-i-icon"></span>長度為6-20字符，字母區分大小寫。</div>
+  </div>
+  <div class="clearfix ub-line">
+    <div class="ub-name"><span class="need">*</span>再次輸入密碼：</div>
+    <div class="ub-value"><input class="re-psw" type="password" disabled></div>
+    <div class="ub-ext ub-tip" style="display:none;"></div>
+  </div>
+  <div class="clearfix ub-line" style="margin-bottom:35px;">
+    <div class="ub-name"><span class="need">*</span>真實姓名：</div>
+    <div class="ub-value"><input class="name" type="text" placeholder="輸入您的真實姓名"></div>
+    <div class="ub-ext ub-tip" style="display:none;"></div>
+  </div>
+  <div class="clearfix ub-line" style="margin-bottom:40px;">
+    <div class="ub-name"></div>
+    <div class="ub-value ub-text">
+      <label for="ubAgree" class="clearfix">
+        <input id="ubAgree" type="checkbox" checked>
+        <p>我已仔細閱讀並明瞭「<a href="#" target="_blank">服務條款</a>」、「<a href="#" target="_blank">免責聲明</a>」、「<a href="#" target="_blank">隱私權聲明</a>」等所載內容及其意義，茲同意該等條款規定，並願遵守網站現今、嗣後規範的各種規則</p>
+      </label>
+      <div class="ub-a-tip"><span class="ub-icon ub-e-icon"></span>您沒有勾選同意服務條款，請勾選同意服務條款後再嘗試送出資料。</div>
+    </div>
+  </div>
+  <div class="clearfix ub-line">
+    <div class="ub-name"></div>
+    <div class="ub-ext ub-submit hk-btn hk-orange-btn">立即註冊</div>
+  </div>
+</div>
+{/block}
+
+{block name="foot"}
+  {include file="public/foot"}
+  <script>
+    seajs.use('src/user/reg',function(){});
+  </script>
+{/block}

@@ -1,0 +1,4 @@
+*.bat
+app/runtime
+public/upload
+public/static/js/config

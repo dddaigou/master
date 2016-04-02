@@ -1,0 +1,30 @@
+.uc-main{
+	margin-top: 32px;
+}
+.uc-menu{
+	float: left;
+	width: 130px;
+}
+.ucm-dl{
+	margin-bottom: 18px;
+}
+.ucm-dl dt{
+	font-size: 15px;
+	font-weight: 700;
+	margin-bottom: 8px;
+}
+.ucm-dl dd{
+	height: 22px;
+	line-height: 22px;
+}
+.ucm-dl a{
+	color: #6c6c6c;
+}
+.ucm-dl a:hover{
+	color:#ff4e00;
+}
+.uc-cnt{
+	float: left;
+	width: 860px;
+	margin-left: 10px;
+}

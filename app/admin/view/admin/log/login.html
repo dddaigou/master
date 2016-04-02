@@ -1,0 +1,50 @@
+{layout name='layout'}
+<form class="form-inline definewidth m20" action="{:U()}" method="get">    
+    筛选：
+    <select name="cause" style="width: 100px;">
+        <option value="">选择类型</option>
+        {foreach name="causes" item="string" key="cause"}
+        <option value="{$cause}" {eq name="Think.get.cause" value="$cause"}selected{/eq}>{$string}</option>
+        {/foreach}
+    </select>
+    搜索：
+    <input type="text" name="keyword" id="keyword"class="abc input-default" placeholder="" value="{$Think.get.keyword|htmlspecialchars}">
+    <button type="submit" class="btn btn-primary">查询</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th width="80">ID</th>
+        <th width="150">登录时间</th>
+        <th width="120">会话</th>
+        <th width="120">IP</th>
+        <th width="100">帐号</th>
+        <th width="100">权限组</th>
+        <th>状态</th>
+    </tr>
+    </thead>
+        {foreach name='rows' item='row'}
+         <tr>
+            <td>{$row.id}</td>
+            <td>{$row.login_time}</td>
+            <td>{$row.session_id}</td>
+            <td>{$row.login_ip}</td>
+            <td>{$row.admin_user_id}</td>
+            <td>{$row.admin_group_id|\\logic\\admin\\Group::get}</td>
+            <td>
+            {notempty name="row.login_result"}登入成功
+            {else /}
+                {$row.fail_cause|\\logic\\admin\\LoginLog::cause}
+            {/notempty}
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<script>
+$(function(){
+    $('[data-confirm]').click(function(){
+        var text = $(this).data('confirm');
+        if(!confirm(text)) return false;
+    });
+});
+</script>

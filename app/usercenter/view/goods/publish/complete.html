@@ -1,0 +1,41 @@
+{extend name="index@view/public/base"/}
+{block name="title"}
+  <title>刊登商品-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/public/icons.css">
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/publish/publish_main.css">
+{/block}
+
+{block name="head"}
+  {include file="index@view/public/head_lite"}
+  <div class="content-width publish-nav clearfix">
+    <div class="p-stp">
+      <b>1</b>
+      <span>選擇商品分類</span>
+    </div>
+    <div class="p-stp">
+      <b>2</b>
+      <span>填寫商品詳細信息</span>
+    </div>
+    <div class="p-stp p-now">
+      <b>3</b>
+      <span>刊登成功</span>
+    </div>
+    <div class="justify-fix"></div>
+  </div>
+{/block}
+{block name="content"}
+  <div class="content-width step3-box">
+    <h3 class="clearfix"><i class="hkico-success"></i>恭喜您，刊登成功！</h3>
+    <p class="sb-do-more">您現在可以：
+      <a href="#">查看已發佈的商品</a>
+      <a href="#">管理已發佈的商品</a>
+      <a href="#">繼續刊登</a>
+    </p>
+  </div>
+{/block}
+{block name="foot"}
+  {include file="index@view/public/foot"}
+  <script>
+    seajs.use('src/publish/publish_main',function(){});
+  </script>
+{/block}

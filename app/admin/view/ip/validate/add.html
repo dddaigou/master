@@ -1,0 +1,37 @@
+{layout name='layout'}
+<form action="{:U()}" method="post" class="definewidth m20">
+<input type="hidden" name="id" value="{$row.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">ID</td>
+            <td>
+                {present name="row.id"}
+                <input type="hidden" name="id" value="{$row.id}" />{$row.id}
+                {else/}
+                自動生成
+                {/present}
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">IP</td>
+            <td><input type="text" name="ip" value="{$row.ip}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">封禁时间</td>
+            <td><input type="text" name="expire_time" value="{$row.expire_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'}).skin('qianhuang');" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">封禁原因</td>
+            <td>
+                <textarea name="cause">{$row.cause|htmlspecialchars}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <a href='{:U("index")}' type="button" class="btn btn-success" name="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

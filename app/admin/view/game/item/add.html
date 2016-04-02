@@ -1,0 +1,36 @@
+{layout name='layout'}
+<form action="{:U()}" method="post" class="definewidth m20">
+<input type="hidden" name="id" value="{$row.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">品項ID</td>
+            <td>
+                {present name="row.id"}
+                <input type="hidden" name="id" value="{$row.id}" />{$row.id}
+                {else/}
+                自動生成
+                {/present}
+                {present name="row.game_id"}
+                <input type="hidden" name="game_id" value="{$row.game_id}" />
+                {else/}
+                <input type="hidden" name="game_id" value="{$Think.get.game_id}" />
+                {/present}
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">品項名稱</td>
+            <td><input type="text" name="name" value="{$row.item_name}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">排序</td>
+            <td><input type="number" name="taxis" value="{$row.taxis}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <a href='{:U("index")}?game_id={$Think.get.game_id}' type="button" class="btn btn-success" name="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

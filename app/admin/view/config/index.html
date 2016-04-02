@@ -1,0 +1,43 @@
+{layout name='layout'}
+<form class="form-inline definewidth m20" action="{:U()}" method="get">
+    分组：
+    <select name='type'>
+        {foreach name='types' item='row'}
+        <option value='{$row.type}' {eq name='row.type' value='$type'}selected{/eq}>{$row.type}</option>
+        {/foreach}
+    </select>
+    <a href="{:U('add')}" type="button" class="btn btn-success" id="addnew">新增</a>
+    <a href="{:U('write')}" data-confirm="確定更新？" type="button" class="btn" id="addnew">更新配置</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th width="200">配置名</th>
+        <th width="400">配置项</th>
+        <th>备注</th>
+        <th width="100">操作</th>
+    </tr>
+    </thead>
+        {foreach name='rows' item='row'}
+         <tr>
+            <td>{$row.name}</td>
+            <td>{$row.value}</td>
+            <td>{$row.remark}</td>
+            <td>
+                <a href="{:U('edit')}?id={$row.id}">编辑</a>    
+                <a data-confirm="確定刪除？" href="{:U('del')}?id={$row.id}">删除</a>                
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<script>
+$(function(){
+    $('[data-confirm]').click(function(){
+        var text = $(this).data('confirm');
+        if(!confirm(text)) return false;
+    });
+    $('select[name=type]').change(function(){
+        $('form').submit();
+    });
+});
+</script>

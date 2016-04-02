@@ -1,0 +1,41 @@
+{layout name='layout'}
+<form action="{:U()}" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">ID</td>
+            <td>
+                {present name='row.id'}
+                <input type="hidden" name="id" value="{$row.id}" />{$row.id}
+                {else/}
+                自动生成
+                {/present}
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">分组名</td>
+            <td><input type="text" name="name" value="{$row.name}"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">权限</td>
+            <td>
+                {foreach name="purviews" item="purview"}
+                <dl>
+                    <dt>{$purview.name}</dt>
+                    {foreach name="purview.items" item="item"}
+                    <dd>
+                        <label><input type="checkbox" name="purviews[]" value="{$item.rule}" {in name="item.rule" value="$row.purviews" }checked{/in} /> {$item.name}</label>
+                    </dd>
+                    {/foreach}
+                </dl>
+                {/foreach}
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <a href="{:U('index')}" class="btn btn-success" name="backid" id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

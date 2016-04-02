@@ -1,0 +1,64 @@
+{extend name="public/base"/}
+{block name="title"}
+  <title>用戶登入-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/user/login.css">
+{/block}
+
+{block name="head"}
+  {include file="public/head_lite"}
+{/block}
+
+{block name="content"}
+<div class="user-login">
+  <div class="content-width" style="position:relative;">
+    <form id="login_form" action="{:U('user/login')}" method="post">
+      <div class="lgn-box">
+        <h3 class="lgn-tle">會員登入</h3>
+        <p id="ulMsg"></p>
+        <div class="lgn-input">
+          <span class="lgn-bg u-accnt-icon"></span>
+          <input type="text" name="account" placeholder="請輸入帳號名稱">
+        </div>
+        <div class="lgn-input">
+          <span class="lgn-bg u-psw-icon"></span>
+          <input type="password" name="password" placeholder="請輸入您設定的密碼">
+        </div>
+        <div class="lgn-input-md clearfix lgn-vcode-line" {eq name="Think.session.is_show_code" value="1"}style="display:block;"{/eq}>
+          <input type="text" name="code" placeholder="請輸入驗證碼">
+          <img class="lgn-vcode" src="{:U('Verify/index')}" />
+          <span class="change-vcode">看不清，換張圖片</span>
+        </div>
+        <div class="lgn-fn-box clearfix">
+          <label for="saved" style="float:left;">
+            <input id="saved" type="checkbox">
+            記住帳號
+          </label>
+          <a href="#" target="_blank" class="get-psw">忘記密碼</a>
+          <div class="clear"></div>
+          <button type="submit" class="lgn-submit hk-btn hk-orange-btn">登入</button>
+          <p style="margin-top:5px;">還沒註冊？<a href="{:U('user/reg')}" target="_blank" style="color:#ff4e00;margin-left:10px;">免費註冊</a></p>
+        </div>
+      </div>
+    </form>
+    <div class="lgn-tip" {eq name="Think.session.is_show_code" value="1"}style="display:block;"{/eq}>
+      <h3>登入小提示</h3>
+      <h4>密碼區分大小寫，您是否鎖定了鍵盤的大寫功能？</h4>
+      <p>請檢查鍵盤上“Caps Lock”或“A”燈是否亮著，如果是，請確認您的密碼是大寫，否則請按下“Caps Lock”鍵後重新填寫。</p>
+      <br>
+      <h4>您是否忘記或不小心填寫了錯誤的帳號或密碼？</h4>
+      <p>您可以通過<a href="#" target="_blank">忘記帳密</a>找回</p>
+      <br>
+      <h4>仍然有問題？</h4>
+      <p>請聯絡客服中心，讓我們幫助您。客服電話：<span style="color:#ff4e00;">02-5579-8591</span><br>電話服務時間：<br>週一至週五10:00-22:30 <br> 週六至週日15:00-22:00。 <br>非電話服務時間，請<a href="#">給我們留言</a>，我們會儘快為您服務。</p>
+    </div>
+    
+  </div>
+</div>
+{/block}
+
+{block name="foot"}
+  {include file="public/foot"}
+  <script>
+    seajs.use('src/user/login',function(){});
+  </script>
+{/block}

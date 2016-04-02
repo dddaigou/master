@@ -1,0 +1,51 @@
+{layout name='layout'}
+<form role="form" class="form-inline definewidth m20" action="" method="get">
+    會員編號： <input type="text" size="3" name='id' value="{$Think.get.id}"></input><br>
+    帳號：<input type="text" size="3" name='account' value="{$Think.get.account}"></input><br>
+    手機：<input type="text" size="3" name='mobile' value="{$Think.get.mobile}"></input><br>
+    真實姓名：<input type="text" size="3" name='realname' value="{$Think.get.realname}"></input><br>
+    註冊IP：<input type="text" size="3" name='reg_ip' value="{$Think.get.reg_ip}"></input><br>
+    註冊時間：
+    <input type="text" name='start_time' value="{$Think.get.start_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'}).skin('qianhuang');" /> 到
+    <input type="text" name='end_time' value="{$Think.get.end_time}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+    <br>
+    <input type="submit" value="搜索" class='btn btn-primary'>
+</form>
+<br>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>會員編號</th>
+        <th>帳號</th>
+        <th>手機</th>
+        <th>真實姓名</th>
+        <th>註冊時間&IP</th>
+        <th>登入時間&IP</th>
+        <th>餘額</th>
+        <th>狀態</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {foreach name='rows' item='row'}
+       <tr>
+            <td>{$row.id}</td>
+            <td>
+                <div>{$row.account}</div>
+            </td>
+            <td>{$row.mobile}</td>
+            <td>{$row.realname}</td>
+            <td>{$row.reg_time}<br/>{$row.reg_ip}</td>
+            <td>{$row.login_time}<br/>{$row.login_ip}</td>
+            <td>0</td>
+            <td>{$row.login_status}</td>
+            <td>
+                <input type="checkbox" name="id[]" value="{$row.id}">
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<div width='50%'>{$page}</div>
+
+<script>
+
+</script>

@@ -1,0 +1,40 @@
+{include file="index@view/public/head_top"}
+<div class="head-uc">
+  <div class="content-width clearfix">
+    <div class="hm-logo">
+      <a href="{:U('/@www')}"><img src="{$Think.config.static_url}/images/public/logo-uc-hk.png" style="vertical-align:top;"></a>
+      <span class="slogan">|<span style="margin-left:5px;position:relative;top:2px;">香港</span></span>
+    </div>
+    <ul class="head-uc-nav">
+      <li class="hun-on"><a href="{:U('/@i')}">首頁</a></li>
+      <li><a href="{:U('/@i')}">消息</a></li>
+    </ul>
+    <div class="head-search">
+      <div class="hs-game hs-select">
+        <input class="hs-input g-val" type="text" data-val="" placeholder="遊戲">
+        <span class="top-icon"></span>
+        <ul class="hs-game-list hs-list">
+          <li>全部遊戲</li>
+        </ul>
+      </div>
+      <div class="hs-server hs-select" style="margin-left:-1px;">
+        <input class="hs-input s-val" type="text" data-val="" placeholder="伺服器">
+        <span class="top-icon"></span>
+        <ul class="hs-server-list hs-list">
+          <li>全部伺服器</li>
+        </ul>
+      </div>
+      <div class="hs-type hs-select" style="margin-left:-1px;">
+        <input class="hs-input t-val" type="text" data-val="" placeholder="物品種類">
+        <span class="top-icon"></span>
+        <ul class="hs-type-list hs-list">
+          <li>全部種類</li>
+        </ul>
+      </div>
+      <div class="hs-keyword" style="margin-left:-1px;">
+        <input id="keywordInput" type="text" placeholder="關鍵字搜尋">
+      </div>
+      <button class="hs-submit" type="button">搜尋</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+th{
+    width: 100px;
+    background-color: #DADAE8;
+    border-top: solid;
+    border-bottom: solid;
+    font-size: 25px;
+    font-weight: 100;
+}
+
+td{
+	text-align: center;
+    width: 100px;
+    border-top: solid;
+    font-size: 18px;
+    font-weight: 100;
+}
+td.a{
+    background-color: #DADAE8;
+}
+td.b{
+    background-color: #A5A5D2;
+}
+td.c{
+    border-bottom: solid;
+}

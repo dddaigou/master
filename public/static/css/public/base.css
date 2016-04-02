@@ -1,0 +1,133 @@
+/*****重置**[[***/
+html, body, iframe, h1, h2, h3, h4, h5, h6, p, img, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+body *{
+	box-sizing: border-box;
+}
+body,button,input,select,textarea{
+	font-family: 'Helvetica Neue', Helvetica, Arial, STHeiti, 'Microsoft JhengHei', 微軟正黑體, sans-serif;
+	font-size: 13px;
+	color: #3c3c3c;
+}
+img{
+	border: 0;
+}
+a{
+	color:#3c3c3c;
+	text-decoration: none;
+}
+a:active, a:hover{
+	outline: 0;
+}
+a:hover{
+	color: #ff4e00;
+}
+ul{
+	list-style: none;
+}
+del{
+	text-decoration: line-through;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+input, select{
+	vertical-align: middle;
+}
+input[type="radio"]{
+	vertical-align: text-bottom;
+}
+input[type="checkbox"]{
+	vertical-align: bottom;
+}
+button, input, select, textarea{
+	margin: 0;
+}
+button, input[type=button]{
+	width: auto;
+	overflow: visible;
+}
+label, input[type=button], input[type=submit], input[type=file], button{
+	cursor: pointer;
+}
+audio:not([controls]){
+	display: none;
+	height: 0;
+}
+strong{
+	font-weight: bold;
+}
+td, td img{
+	vertical-align: top;
+}
+.clear{
+	clear:both;
+}
+.clearfix{
+	zoom:1;
+}
+.clearfix:after{
+	content:'';
+	clear:both;
+	display:block;
+}
+.hk-fl{
+	float: left;
+}
+.hk-fr{
+	float: right;
+}
+.ele-hide{
+	display: none;
+}
+.center-block{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.text-center{
+	text-align: center;
+}
+.justify-fix{
+	display: inline-block;
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+}
+.ele-ellipsis{
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.hk-btn{
+	display: block;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	font-size: 18px;
+	cursor: pointer;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+}
+.hk-btn.hk-orange-btn{
+	background: #ff4e00;
+	color: #fff;
+}
+.hk-btn.hk-orange-btn:hover{
+	background: #ea2700;
+}
+.hk-btn.hk-orange-btn:active{
+	box-shadow: 2px 2px 5px rgba(0,0,0,.5) inset;
+	text-indent: 1px;
+	line-height: 45px;
+}
+.hk-btn.hk-disabled-btn{
+	color: #6c6c6c;
+	background: #dedbdb;
+}
+/*****重置**]]***/

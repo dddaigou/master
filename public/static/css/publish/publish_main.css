@@ -1,0 +1,387 @@
+.publish-nav{
+	border-bottom: 1px solid #e5e5e5;
+	text-align: justify;
+	padding: 0 66px;
+}
+.p-stp{
+	display: inline-block;
+}
+.p-stp b{
+	display: block;
+	float: left;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-size: 24px;
+	border-radius: 50%;
+	color: #fff;
+	background: #9c9c9c;
+	font-weight: normal;
+}
+.p-stp span{
+	float: left;
+	font-size: 18px;
+	margin: 4px 0 0 14px;
+}
+.p-now b{
+	background: #ff4e00;
+}
+.p-now span{
+	color: #ff4e00;
+}
+/******刊登第1步**[[*******/
+.sb-tag{
+	font-size: 15px;
+	padding-left: 48px;
+	height: 50px;
+	line-height:50px;
+}
+.tag-game,.tag-server,.tag-type{
+	display: none;
+}
+.sb-sel-box{
+	height: 400px;
+	background: #f0f0f0;
+	padding: 12px 46px;
+}
+.sb-box{
+	float: left;
+	width: 248px;
+	height: 374px;
+	background: #fff;
+	padding: 12px 10px;
+}
+.g-box-input{
+	position: relative;
+}
+.g-box-input input{
+	width: 208px;
+	height: 28px;
+	line-height: 28px;
+	padding: 0 20px 0 8px;
+	outline: none;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+}
+.search-icon{
+	position: absolute;
+	display: block;
+	top: 7px;
+	right: 28px;
+	z-index: 3;
+	width: 14px;
+	height: 14px;
+	background: url(/images/public/public-icon.png) -14px -76px no-repeat;
+}
+.g-box-input-on input{
+	border-color: #85b7d9;
+}
+.g-box-input-on .search-icon{
+	background-position: 0px -76px;
+}
+.sb-s-box,.sb-t-box{
+	display: none;
+}
+.sb-sel-ul{
+	margin-top: 8px;
+	overflow-y: scroll;
+}
+.g-box-ul{
+	height: 308px;
+}
+.s-box-ul,.t-box-ul{
+	height: 336px;
+}
+.sel-item,.g-tle{
+	width: 208px;
+	height: 28px;
+	line-height: 28px; 
+	padding-left: 26px;
+}
+.sel-item{
+	position: relative;
+	cursor: pointer;
+}
+.sel-item i{
+	display: block;
+	position: absolute;
+	top: 9px;
+	right: 5px;
+	z-index: 2;
+	content: '';
+	border: 4px solid transparent;
+	border-left-color: #6c6c6c;
+}
+.sel-item:hover,.sel-active{
+	background: #e9f5fd;
+	border: 1px solid #cbdaef;
+	padding-left: 25px;
+	line-height: 25px;
+}
+.sel-item:hover i,.sel-active i{
+	top: 8px;
+	right:4px;
+}
+.no-next i{
+	display: none;
+}
+.g-tle{
+	padding-left: 16px;
+}
+.g-last{
+	color: #067564;
+}
+.g-pc{
+	color: #e15416;
+}
+.g-mob{
+	color: #1f55ae;
+}
+.g-web{
+	color: #b9042a;
+}
+.sb-ft{
+	margin: 28px 0 44px;
+}
+.sb-submit{
+	float: left;
+	width: 266px;
+	height: 40px;
+	border-radius: 4px;
+	margin-left: 268px;
+	font-size: 18px;
+}
+.no-game{
+	float: left;
+	margin: 12px 0 0 78px;
+	font-size: 15px;
+}
+/******刊登第1步**]]*******/
+/******刊登第2步**[[*******/
+.step2-box{
+	margin-top: 24px;
+	margin-bottom: 46px;
+}
+.hk-fl{
+	margin-right: 10px;
+}
+.sb-line{
+	line-height: 36px;
+	margin-bottom: 18px;
+}
+.sb-l-name,.sb-l-val{
+	float: left;
+	font-size: 15px;
+}
+.sb-need{
+	position: relative;
+	top: 4px;
+	font-size: 22px;
+	color: #c70000;
+	margin-right: 4px;
+	vertical-align: top;
+}
+.sb-l-name{
+	width: 170px;
+	text-align: right;
+}
+.sb-l-val{
+	width: 830px;
+	padding-left: 20px;
+}
+.sb-control{
+	height: 36px;
+	line-height: 36px;
+	border:1px solid #e5e5e5;
+	vertical-align: top;
+	outline: none;
+	padding: 0 10px;
+	margin-right: 3px;
+	font-size: 15px;
+}
+.sb-control-md{
+	width: 198px;
+}
+.sb-control-lg{
+	width: 448px;
+}
+.sb-server{
+	width: 188px;
+	height: 30px;
+	margin: 0 3px;
+}
+.sb-title{
+	width: 448px;
+}
+.now-tle-num{
+	color: #ff4e00;
+}
+.sb-price{
+	color: #c70000;
+}
+.sunshine-txt{
+	color: #f00;
+	animation: shan .4s;
+	animation-timing-function:step(2);
+	animation-iteration-count: 2;
+}
+@-webkit-keyframes shan{
+	0%{color:#f00;}
+	50%{color:#FFD21D;}
+	100%{color:#f00;}
+}
+.get-money{
+	color: #ff4e00;
+}
+.sb-img-tip{
+	width: 392px;
+	height: 27px;
+	line-height: 27px;
+	padding-left: 10px;
+	margin-top: 4px;
+	font-size: 13px;
+	border: 1px solid #fcecd7;
+	background: #fffbed;
+}
+.img-box{
+	margin-top: 10px;
+	width: 430px;
+}
+.img-item{
+	position: relative;
+	float: left;
+	width: 62px;
+	height: 62px;
+	background: url(/images/publish/publish-bg.png) no-repeat 0px 0px;
+	cursor: pointer;
+	margin:0 20px 10px 0;
+	line-height: 56px;
+	text-align: center;
+}
+.img-item:hover{
+	background-position: -62px 0px;
+}
+.img-item img{
+	max-width: 100%;
+	vertical-align: middle;
+}
+.has-img{
+	background: #fff;
+	border: 1px solid #e5e5e5;
+}
+.del-img{
+	display: block;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	z-index: 3;
+	width: 100%;
+	line-height: 18px;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	background: rgba(0,0,0,.7);
+}
+.add-img{
+	width: 70px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	font-size: 13px;
+	border: 1px solid #e5e5e5;
+	background: #fff;
+	cursor: pointer;
+}
+.add-img:hover{
+	color: #4ba4e2;
+	background: #e9f5fd;
+	border-color: #91c8ee;
+}
+.sb-content{
+	float: left;
+	width: 470px;
+	height: 220px;
+	padding: 5px;
+	border:1px solid #e5e5e5;
+	font-size: 15px;
+	resize:none;
+	outline: none;
+}
+.sb-buy-user{
+	margin-left: 4px;
+}
+.publish-submit{
+	width: 266px;
+	height: 40px;
+	border-radius: 4px;
+	margin-top: 28px;
+}
+.ub-tip{
+	float: left;
+	display: none;
+	width: 240px;
+	background: #f4f4f4;
+	border: 1px solid #e5e5e5;
+	line-height: 34px;
+	padding: 0 20px;
+}
+/***遊戲幣***/
+.sb-yxb-atle,.sb-yxb-tle{
+	float: left;
+}
+/***帳號***/
+.account-box{
+	width: 560px;
+	height: 565px;
+	background: #f0f0f0;
+	border: 1px solid #e5e5e5;
+}
+.account-box .sb-line{
+	margin-bottom: 8px;
+}
+.account-box .sb-l-name{
+	width: 188px;
+}
+.account-box .sb-l-val{
+	width: 356px;
+}
+.account-box p{
+	width: 540px;
+	line-height: 20px;
+	margin: 10px auto;
+	padding: 2px 10px;
+	background: #fffbed;
+	border: 1px solid #fcecd7;
+	font-size: 13px;
+	text-align: justify;
+}
+.account-box .acnt-line{
+	height: 28px;
+	line-height: 28px;
+	margin-bottom: 6px;
+}
+.acnt-line label{
+	display: block;
+	float: left;
+	width: 120px;
+}
+/******刊登第2步**]]*******/
+/******刊登第3步**[[*******/
+.step3-box{
+	height: 570px;
+	padding-top: 126px;
+}
+.step3-box h3{
+	font-size: 30px;
+	line-height: 70px;
+}
+.sb-do-more{
+	margin-top: 66px;
+	text-align: center;
+	font-size: 18px;
+}
+.sb-do-more a{
+	margin-right: 16px;
+}
+/******刊登第3步**]]*******/

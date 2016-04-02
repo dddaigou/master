@@ -1,0 +1,55 @@
+{layout name='layout'}
+<form class="form-inline definewidth m20" action="{:U()}" method="get">搜索：
+    <select name="type">
+        <option value=''>選擇類型</option>
+        {foreach name='types' item='type' key='key'}
+        <option value="{$key}" {eq name="Think.get.type" value='$key'}selected{/eq}>{$type}</option>
+        {/foreach}
+    </select>
+    <input type="text" name="keyword" id="keyword"class="abc input-default" placeholder="" value="{$Think.get.keyword|htmlspecialchars}">
+    <button type="submit" class="btn btn-primary">查询</button>
+    <a href='{:U("add")}' class="btn btn-success" id="addnew">新增</a>
+    <a href='{:U("toConfig")}' type="button" class="btn">更新到配置</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th width="80">ID</th>
+        <th width="80">類型</th>
+        <th width="200">名稱</th>
+        <th width="50">隱藏</th>
+        <th width="50">禁刊</th>
+        <th width="50">排序</th>
+        <th>商品類型</th>
+        <th>遊戲幣單位</th>
+        <th width="200">操作</th>
+    </tr>
+    </thead>
+        {foreach name='rows' item='row'}
+         <tr>
+            <td>{$row.id}</td>
+            <td>{$row.type|\\logic\\game\\Type::get}</td>
+            <td><font color="{$row.color}">{$row.name}</font></td>
+            <td>{notempty name="row.is_hidden"}是{/notempty}</td>
+            <td>{notempty name="row.is_deny_publish"}是{/notempty}</td>
+            <td>{$row.taxis}</td>
+            <td>{$row.goods_type|\\logic\\game\\GoodsType::format}</td>
+            <td>{$row.currency_unit}</td>
+            <td>
+                <a href="{:U('edit')}?id={$row.id}">编辑</a>
+                <a data-confirm="確定刪除？" href="{:U('del')}?id={$row.id}">刪除</a>
+                <a href="{:U('game.server/index')}?game_id={$row.id}">伺服器管理</a>
+                <a href="{:U('game.item/index')}?game_id={$row.id}">品项管理</a>
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<div>{$pager}</div>
+<script>
+$(function(){
+    $('[data-confirm]').click(function(){
+        var text = $(this).data('confirm');
+        if(!confirm(text)) return false;
+    });
+});
+</script>

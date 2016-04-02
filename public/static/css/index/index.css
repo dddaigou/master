@@ -1,0 +1,359 @@
+.index-main{
+	margin-top: 12px;
+}
+.idx-bg{
+	background: url(/images/index/idx-bg.png) no-repeat;
+}
+.banner-blk,.site-info,.lg-banner,.md-banner,.hk-guide{
+	float: left;
+}
+.banner-blk{
+	width: 738px;
+	margin-right: 10px;
+}
+.lg-banner{
+	position: relative;
+	width: 516px;
+	height: 290px;
+	background-color: #bfbfbf;
+	margin-right: 10px;
+	overflow: hidden;
+}
+.md-banner{
+	width: 212px;
+	height: 290px;
+	background-color: #bfbfbf;
+	overflow: hidden;
+}
+
+.lg-banner li,.md-banner li{
+	float: left;
+}
+.hk-guide{
+	width: 738px;
+	height: 72px;
+	background-position: 0px 0px;
+	margin-top: 10px;
+}
+.site-info{
+	width: 252px;
+	border: 1px solid #e5e5e5;
+}
+.info-tle{
+	height: 30px;
+	line-height: 30px;
+	color: #3c3c3c;
+	font-size: 15px;
+	padding-left: 10px;
+	background: #f7f7f7;
+	border-bottom: 1px solid #e5e5e5;
+}
+.info-list{
+	padding-top: 10px;
+	padding-left: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.info-list a{
+	display: block;
+	margin-bottom: 10px;
+	color: #3c3c3c;
+}
+.info-login{
+	padding: 10px 0 10px 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.info-btn{
+	float: left;
+	display: block;
+	width: 66px;
+	height: 30px;
+	line-height: 30px;
+	background: #ff4e00;
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
+	margin-right: 16px;
+	border-radius: 4px;
+}
+.info-btn:hover{
+	background: #ea2700;
+	color:#fff;
+}
+.info-btn:active{
+	box-shadow: 3px 3px 3px #c20000 inset;
+}
+.quick-fn{
+	position: relative;
+	z-index: 3;
+	width: 251px;
+}
+.q-f-item{
+	float: left;
+	width: 86px;
+	height: 79px;
+	border-right: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	text-align: center;
+	font-size: 12px;
+	cursor: pointer;
+}
+.q-f-2,.q-f-5{
+	width:84px;
+}
+.q-f-3,.q-f-6{
+	width:81px;
+}
+.q-f-item i{
+	display: block;
+	width: 40px;
+	height: 34px;
+	margin-top: 12px;
+	margin-bottom: 7px;
+}
+.q-f-1 i{
+	background-position: -57px -120px;
+}
+.q-f-2 i{
+	background-position: -97px -120px;
+}
+.q-f-3 i{
+	background-position: -137px -120px;
+}
+.q-f-4 i{
+	background-position: -177px -120px;
+}
+.q-f-5 i{
+	background-position: -217px -120px;
+}
+.q-f-6 i{
+	background-position: -57px -120px;
+}
+.q-f-item:hover i{
+	animation:qq 0.3s forwards;
+}
+@-webkit-keyframes qq {
+  48% {
+    -webkit-transform: translateY(-90%);
+  }
+  50% {
+    opacity: 0.3;
+    -webkit-transform: translateY(40%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes qq {
+  48% {
+    -moz-transform: translateY(-90%);
+  }
+  50% {
+    opacity: 0.3;
+    -moz-transform: translateY(40%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+.new-user{
+	height: 39px;
+}
+.n-u-icon{
+	float: left;
+	width: 65px;
+	height: 25px;
+	margin: 6px 0 0 2px;
+	background-position: 0px -72px;
+}
+.n-u-list{
+	float: left;
+	width: 175px;
+	height: 39px;
+	font-size: 13px;
+	color: #3c3c3c;
+	overflow: hidden;
+	margin-left: 6px;
+}
+.n-u-list li{
+	height: 39px;
+	line-height: 46px;
+}
+/******點卡**[[********/
+.block-2{
+	margin-top: 20px;
+}
+.block-tle{
+	height: 37px;
+	line-height: 37px;
+	padding:0 20px 0 17px;
+	font-size: 18px;
+}
+.block-tle a{
+	float: right;
+	font-size: 13px;
+	color:#3c3c3c;
+}
+.block-2 .block-tle{
+	background: #fad6d6;
+	color:#e61414;
+}
+.card-list{
+	padding:20px 16px 0 23px;
+	text-align: justify;
+}
+.cl-item{
+	display: inline-block;
+	position: relative;
+	width: 151px;
+	height: 201px;
+	background: #fcf5eb;
+	border: 1px solid #bea279;
+	border-bottom-width: 3px;
+	border-radius: 4px;
+}
+.cl-75{
+	position: absolute;
+	top: -5px;
+	left: -7px;
+	z-index: 3;
+	width: 57px;
+	height: 57px;
+	background-position: 0px -97px;
+}
+.cl-img{
+	width: 149px;
+	height: 119px;
+	background-position: 0 -354px;
+}
+.cl-name,.cl-o-price,.cl-price{
+	height: 26px;
+	line-height: 26px;
+	color: #79562a;
+	padding-left: 20px;
+}
+.cl-name{
+	border:1px dashed #bea279;
+}
+.cl-k{
+	display: inline-block;
+	width: 62px;
+}
+/******點卡**]]********/
+/******線上遊戲**[[********/
+.block-3{
+	margin-top: 5px;
+}
+.block-3 .block-tle{
+	background: #fbdfd3;
+	color: #ff4e00;
+}
+.online-game,.mobile-game{
+	float: left;
+	width: 755px;
+	padding-top: 8px;
+}
+.og-item,.mg-item{
+	float: left;
+	width: 322px;
+	height: 166px;
+	margin: 0 55px 30px 0;
+}
+.og-img,.mg-img{
+	margin-bottom: 4px;
+}
+.og-link,.mg-link{
+	display: inline-block;
+	width: 322px;
+	color: #6c6c6c;
+	height: 22px;
+	line-height: 22px;
+}
+.og-link:hover,.mg-link:hover{
+	text-decoration: underline;
+}
+.game-done{
+	float: left;
+	width: 244px;
+	border: 1px solid #e5e5e5;
+	margin-top: 14px;
+}
+.game-done h3{
+	height: 38px;
+	line-height: 38px;
+	font-size: 16px;
+	color: #3c3c3c;
+	background: #f7f7f7;
+	padding: 0 10px;
+	border-bottom: 1px solid #e5e5e5;
+	font-weight: 700;
+}
+.g-d-list{
+	height: 344px;
+	padding:15px 10px 15px;
+}
+.g-d-list li{
+	color: #3c3c3c;
+	margin-bottom: 22px;
+}
+.g-d-list li:last-child{
+	margin-bottom: 0;
+}
+.g-d-time{
+	float: right;
+	color: #9c9c9c;
+}
+/******線上遊戲**]]********/
+/******手機遊戲**[[********/
+.block-4{
+	margin-top: 15px;
+}
+.block-4 .block-tle{
+	background: #c7e8fa;
+	color: #038ae8;
+}
+.mobile-game{
+	padding-top: 26px;
+}
+.mg-logo{
+	margin-bottom: 22px;
+}
+.mg-img{
+	float: left;
+	margin-left: 55px;
+	width: 76px;
+	height: 75px;
+}
+.mg-name{
+	float: left;
+	margin: 30px 0 0 33px;
+	font-size: 15px;
+	font-weight: 700;
+}
+/******手機遊戲**]]********/
+/******新手引導**[[********/
+.block-5{
+	margin-top: 18px;
+	height: 200px;
+	border:1px solid #e5e5e5;
+	background: #f7f7f7;
+	padding: 0 48px;
+	text-align: justify;
+}
+.beginner-item{
+	display: inline-block;
+	width: 156px;
+	height: 180px;
+	margin-top: 6px;
+}
+.bi-p1{
+	font-size: 16px;
+	color: #ff4e00;
+	line-height: 30px;
+	text-align: center;
+}
+.bi-p2{
+	line-height: 34px;
+	background: #eee;
+	text-align: center;
+}
+/******新手引導**]]********/

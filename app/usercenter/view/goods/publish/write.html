@@ -1,0 +1,238 @@
+{extend name="index@view/public/base"/}
+{block name="title"}
+  <title>刊登商品-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/public/icons.css">
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/publish/publish_main.css">
+{/block}
+
+{block name="head"}
+  {include file="index@view/public/head_lite"}
+  <div class="content-width publish-nav clearfix">
+    <div class="p-stp">
+      <b>1</b>
+      <span>選擇商品分類</span>
+    </div>
+    <div class="p-stp p-now">
+      <b>2</b>
+      <span>填寫商品詳細信息</span>
+    </div>
+    <div class="p-stp">
+      <b>3</b>
+      <span>刊登成功</span>
+    </div>
+    <div class="justify-fix"></div>
+  </div>
+{/block}
+{block name="content"}
+  <div class="content-width step2-box" data-gid="{$game_id}" data-sid="{$server_id}" data-tid="{$type}">
+    <div class="sb-line clearfix">
+      <div class="sb-l-name">已選商品：</div>
+      <div class="sb-l-val">
+        <span>{$game_name}/</span>
+        <select class="sb-control sb-server"></select>
+        <span>/{$type_name}</span>
+        <a style="margin-left:12px;color: #1882ef;" href="{:U('goods.publish/select@i')}?game_id={$game_id}&server_id={$server_id}&type={$type}">[返回修改]</a>
+      </div>
+    </div>
+    {eq name="type" value="4" //帳號}
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>帳號屬性：</div>
+      <div class="sb-l-val">
+        <div class="account-box">
+          <p>為您順利交易，需移交註冊遊戲帳號的相關資料給買家（包含：官網帳密、註冊信箱帳密、身分證字號），若您無法移交，可先將您的郵箱、官網密碼等資料變更，再行刊登。以免被他人利用。</p>
+          <div class="sb-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>遊戲帳號：</div>
+            <div class="sb-l-val">
+              <input type="text" class="sb-control sb-control-md">
+            </div>
+          </div>
+          <div class="sb-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>遊戲角色名：</div>
+            <div class="sb-l-val">
+              <input type="text" class="sb-control sb-control-md">
+            </div>
+          </div>
+          <div class="sb-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>職業：</div>
+            <div class="sb-l-val">
+              <input type="text" class="sb-control sb-control-md">
+            </div>
+          </div>
+          <div class="sb-line clearfix" style="margin-bottom:14px;">
+            <div class="sb-l-name"><span class="sb-need">*</span>等級：</div>
+            <div class="sb-l-val">
+              <input type="text" class="sb-control sb-control-md">
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>性別：</div>
+            <div class="sb-l-val">
+              <label for="male"><input id="male" type="radio" name="sex">男</label>
+              <label for="female"><input id="female" type="radio" name="sex">女</label>
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>註冊資料是否真實：</div>
+            <div class="sb-l-val">
+              <label for="zs"><input id="zs" type="radio" name="zs">真實</label>
+              <label for="zs_no"><input id="zs_no" type="radio" name="zs">不真實</label>
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>保鏢卡/安全卡/防盜：</div>
+            <div class="sb-l-val">
+              <label for="bd"><input id="bd" type="radio" name="bd">有綁定</label>
+              <label for="bd_no"><input id="bd_no" type="radio" name="bd">無綁定</label>
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>能否提供帳號切結書：</div>
+            <div class="sb-l-val">
+              <label for="jq"><input id="jq" type="radio" name="jq">能提供</label>
+              <label for="jq_no"><input id="jq_no" type="radio" name="jq">不能提供</label>
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>ID是否不雅：</div>
+            <div class="sb-l-val">
+              <label for="by"><input id="by" type="radio" name="by">是</label>
+              <label for="by_no"><input id="by_no" type="radio" name="by">否</label>
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>ID是否一手帳號：</div>
+            <div class="sb-l-val">
+              <label for="ys"><input id="ys" type="radio" name="ys">一手</label>
+              <label for="ys_no"><input id="ys_no" type="radio" name="ys">二手</label>
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>GASH帳號是否升級：</div>
+            <div class="sb-l-val">
+              <label for="gash"><input id="gash" type="radio" name="gash">有</label>
+              <label for="gash_no"><input id="gash_no" type="radio" name="gash">無</label>
+            </div>
+          </div>
+          <div class="sb-line acnt-line clearfix">
+            <div class="sb-l-name"><span class="sb-need">*</span>是否進階認證：</div>
+            <div class="sb-l-val">
+              <label for="rz"><input id="rz" type="radio" name="rz">有認證</label>
+              <label for="rz_no"><input id="rz_no" type="radio" name="rz">無認證</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {/eq}
+    {eq name="type" value="2" //遊戲幣}
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>遊戲幣數量：</div>
+      <div class="sb-l-val">
+        <div class="hk-fl">
+          <?php // echo dump($currency_unit); ?>
+          <input type="number" class="sb-control sb-control-md yxb-num">
+          {volist name="currency_unit" id="v" key="k"}
+          <label for="count_{$k}" style="margin-right:10px;"><input id="count_{$k}" type="radio" name="currency_unit" value="{$k}" data-unit="{$v[value]}" data-txt="{$v[name]}" {eq name="k" value="1"}checked{/eq}>{$v[name]}</label>
+          {/volist}
+        </div>
+        <div class="ub-tip"><span class="ub-icon ub-e-icon"></span>請填寫完整</div>
+      </div>
+    </div>
+    {/eq}
+    {eq name="type" value="5" //代儲}
+    {notempty name="items"}
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>商品品項：</div>
+      <div class="sb-l-val">
+        <select class="sb-control">
+          <option value="0">請選擇</option>
+          {volist name="items" id="v"}
+          <option value="{$key}">{$v}</option>
+          {/volist}
+        </select>
+      </div>
+    </div>
+    {/notempty}
+    {/eq}
+    <?php if($type != 2 && $type != 5){ ?>
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>商品標題：</div>
+      <div class="sb-l-val">
+        <input type="text" class="sb-control sb-title" placeholder="40個字以內" maxlength="40">
+        （<span class="now-tle-num">0字</span> / 40字）
+      </div>
+    </div>
+    <?php } ?>
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>價格：</div>
+      <div class="sb-l-val">
+        <div class="hk-fl"><input type="number" class="sb-control sb-control-md sb-price" placeholder="10元~200,000元">元</div>
+        <div class="ub-tip"><span class="ub-icon ub-e-icon"></span>價格在10~200,000元之間</div>
+      </div>
+    </div>
+    {eq name="type" value="2" //遊戲幣}
+    <div class="sb-line clearfix">
+      <div class="sb-l-name">出售幣值：</div>
+      <div class="sb-l-val sb-auto-count">每件遊戲幣數量 / 每件遊戲幣售價</div>
+    </div>
+    {/eq}
+    {in name="type" value="2,5" //遊戲幣 代儲}
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>商品標題：</div>
+      <div class="sb-l-val">
+        <input type="text" class="sb-control sb-control-md sb-auto-tle" placeholder="此處由系統填寫" disabled>
+        <input type="text" class="sb-control sb-control-md sb-tle" placeholder="40個字以內" maxlength="40">
+        （<span class="now-tle-num">0字</span> / 40字）
+      </div>
+    </div>
+    {/in}
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>庫存：</div>
+      <div class="sb-l-val">
+        <div class="hk-fl"><input type="number" class="sb-control sb-control-md sb-num" placeholder="件數">件</div>
+        <div class="ub-tip"><span class="ub-icon ub-e-icon"></span>價格在10~200,000元之間</div>
+      </div>
+    </div>
+    <?php if($type != 2 && $type != 5){ ?>
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>商品圖檔：</div>
+      <div class="sb-l-val">
+        <p class="sb-img-tip">上傳商品圖檔，提高關注度有利於出售，最多可上傳<span style="color:#ff4e00;">15張</span>圖檔。</p>
+        <div class="img-box clearfix">
+          <div class="img-item has-img"><img src="{$Think.config.static_url}/images/index/bm.png"><a href="javascript:;" class="del-img">刪除</a></div>
+          <div class="img-item"></div>
+          <div class="img-item"></div>
+          <div class="img-item"></div>
+          <div class="img-item"></div>
+        </div>
+        <div class="add-img">添加更多</div>
+      </div>
+      <input type="hidden" class="selected-img" value="asdasd,qweqewe,weqwe,">
+    </div>
+    <?php } ?>
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>商品詳情：</div>
+      <div class="sb-l-val">
+        <textarea class="sb-content" placeholder="必填項"></textarea>
+      </div>
+    </div>
+    <div class="sb-line clearfix">
+      <div class="sb-l-name"><span class="sb-need">*</span>承諾交貨時間：</div>
+      <div class="sb-l-val">
+        <select class="sb-control sb-send-time">
+          {volist name="transfer_time_list" id="v"}
+          <option value="{$key}">{$v}</option>
+          {/volist}
+        </select>
+      </div>
+    </div>
+    <div class="hk-btn hk-orange-btn publish-submit center-block">提交刊登</div>
+  </div>
+  {include file="index@view/public/img_gallery"}
+{/block}
+{block name="foot"}
+  {include file="index@view/public/foot"}
+  <script>
+    seajs.use('src/publish/step2',function(){});
+  </script>
+{/block}

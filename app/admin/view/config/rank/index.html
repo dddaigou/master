@@ -1,0 +1,105 @@
+{layout name='layout'}
+<form class="form-inline definewidth m20" action="{:U('index')}" method="get">
+    類型：
+    <select id='selectType' name='type'>
+        {foreach name='types' key='key' item='row'}
+        <option value='{$key}' {eq name='type' value='$key'}selected{/eq}>{$row}</option>
+        {/foreach}
+    </select>
+    <a id='add'data-url="{:U('edit')}?type={$type}" type="button" class="btn btn-success" >新增</a>
+    <a id="reload" type="button" class="btn" >刷新</a>
+    <a href="/index_rank/saveToFile" type="button" class="btn" >更新到配置</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th width="20">id</th>
+        <th width="200">{$title['name']}</th>
+        <th width="100">{$title['num']}</th>
+        <th width="100">{$title['rank']}</th>
+        <th width="100">{$title['game_id']}</th>
+        {if condition="in_array($type ,[2,3])"}
+        <th width="200">{$title['other']}</th>
+        {/if}
+        <th width="100">狀態</th>
+        <th width="100">操作</th>
+    </tr>
+    </thead>
+        {foreach name='rank_list' item='row'}
+         <tr>
+            <td>{$row.id}</td>
+            <td>{$row.name}</td>
+            <td>{$row.num}</td>
+            <td>{$row.rank}</td>
+            <td>{$row.game_id}</td>
+            {if condition="in_array($type ,[2,3])"}
+            <td>{$row.other}</td>
+            {/if}
+            <td>{$tags[$row.tag]}</td>
+            <td>  
+                <button id="edit" data-url="{:U('edit')}?id={$row.id}&type={$type}" class="btn">编辑</button>    
+                <button id='delete' data-url="{:U('delete')}?id={$row.id}" class="btn">删除</button>                
+            </td>
+        </tr>
+        {/foreach}
+</table>
+{$page}
+<script>
+$(function(){
+    $('[data-confirm]').click(function(){
+        var text = $(this).data('confirm');
+        if(!confirm(text)) return false;
+    });
+    $('select[name=type]').change(function(){
+        $('form').submit();
+    });
+    $('button[id=edit]').click(function() {
+        var url = $(this).data('url');
+        layer.open({
+            type: 2,
+            title: '編輯',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['310px', '50%'],
+            skin: 'layui-layer-rim',
+            content:[url,'no']
+        });
+    });
+    $('a[id=add]').click(function() {
+        var url = $(this).data('url');
+        layer.open({
+            type: 2,
+            title: '新增',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['310px', '50%'],
+            skin: 'layui-layer-rim',
+            content:[url,'no']
+        });
+    });
+    $('button[id=delete]').click(function(){
+        var url = $(this).data('url');
+        layer.confirm('確認刪除？', {btn: ['Yes','No']}, 
+            function(){
+            $.ajax({
+                url:url,
+                type: "GET",
+                dataType: 'html',
+                success: function (result){
+                    if (result==1) {
+                        layer.msg('已刪除', {icon: 1});
+                        location.reload();
+                    }else{
+                        layer.msg('刪除失敗', {icon: 2});
+                    }
+                }
+            });
+        }, function(){
+            layer.msg('已取消', {icon: 2});
+        });
+    });
+    $('a[id=reload]').click(function(){
+        location.reload();
+    });
+});
+</script>

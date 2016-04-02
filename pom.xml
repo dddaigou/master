@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>8591</groupId>
+  <artifactId>hk8591</artifactId>
+  <version>1.0</version>
+
+  <name>8591/hk8591</name>
+
+  <properties>
+    <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+    <sonar.host.url>http://192.168.8.28:9000</sonar.host.url>
+    <sonar.gitlab.project_id>8591/hk8591</sonar.gitlab.project_id>
+    <sonar.language>php</sonar.language>
+    <sonar.sources>.</sonar.sources>
+    <sonar.exclusions>thinkphp/**,public/**</sonar.exclusions>
+  </properties>
+
+</project>

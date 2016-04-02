@@ -1,0 +1,17 @@
+<script src="{$Think.config.static_url}/js/src/tool/sea.js"></script>
+<script>
+  seajs.config({
+    base: '{$Think.config.js_url}',
+    alias:{
+      jquery:     'src/tool/jquery.js',
+      game:       'config/game.js',
+      card:       'config/card.js'
+    },
+    preload:'jquery',
+    map: [
+        [ /^(.*\/dist\/.*\.(?:css|js))$/i, '$1?2016020501' ]
+    ],
+    charset:'utf-8'
+  });
+  
+</script>

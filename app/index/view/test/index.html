@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEST</title>
+	<link rel="stylesheet" type="text/css" href="{$Think.config.css_url}/test/index.css">
+	<script type="text/javascript" src="{$Think.config.static_url}/admin/js/jquery.js"></script>
+</head>
+<body>
+<table>
+	<tr>
+		<th>a</th>
+		<th>b</th>
+		<th>c</th>
+	</tr>
+	{foreach name='list' item='vo' key='k'}
+	<?php $k=$k%2; $class = $k>0?'a':'b';  ?>
+	<tr>
+		<td class="{$class}">{$vo}</td>
+		<td class="{$class}">{$vo}</td>
+		<td class="{$class}">{$vo}</td>
+	</tr>
+	{/foreach}
+</table>
+</body>
+<script>
+	$(document).ready(function(){
+		$('td').click(function() {
+			var num = $(this).text();
+			if (num>3) {
+				$(this).fadeOut(500);
+			}
+		});
+	});
+</script>
+</html>

@@ -1,0 +1,52 @@
+{extend name="public/base"/}
+{block name="title"}
+  <title>用戶註冊-8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/public/icons.css">
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/user/reg.css">
+{/block}
+
+{block name="head"}
+  {include file="public/head_lite"}
+{/block}
+
+{block name="content"}
+<div class="content-width user-box" style="position:relative;">
+  <h3 class="reg-ok-top clearfix">
+    <i class="hkico-success"></i>恭喜您，您已成功註冊8591！
+  </h3>
+  <div class="r-o-cnt clearfix">
+    <h4>您現在可以：</h4>
+    <div class="r-o-bk">
+      <div class="o-b-img"></div>
+      <div class="o-b-txt">
+        <h3>我是買家</h3>
+        <p>無論是線上遊戲、手機遊戲、網頁遊戲、點數卡，都能在8591買到！</p>
+        <div class="o-b-ft">
+          <div class="hk-btn hk-orange-btn o-b-btn">立即購買</div>
+          <a href="/">跳轉到首頁</a>
+        </div>
+      </div>
+    </div>
+    <div class="r-o-bk" style="margin-left:68px;">
+      <div class="o-b-img"></div>
+      <div class="o-b-txt">
+        <h3>我是賣家</h3>
+        <p>8591每天有超過10萬遊戲用戶，在8591上購買，您的商品很快就會賣出！</p>
+        <div class="o-b-ft">
+          <div class="hk-btn hk-orange-btn o-b-btn">刊登商品</div>
+          <a href="/">跳轉到首頁</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/block}
+
+{block name="foot"}
+  {include file="public/foot"}
+  <script>
+    seajs.use('src/user/reg',function(){
+      console.log(2)
+    });
+  </script>
+{/block}

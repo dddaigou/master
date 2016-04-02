@@ -1,0 +1,47 @@
+.ub-icon{
+	display: inline-block;
+	position: relative;
+    top: 1px;
+	width: 12px;
+	height: 12px;
+	margin-right: 6px;
+	background: url(/images/public/public-icon.png) no-repeat;
+}
+.ub-e-icon{
+	background-position:0px 0px;
+}
+.ub-s-icon{
+	background-position:-12px 0px;
+}
+.ub-i-icon{
+	background-position:-24px 0px;
+}
+.hkico-success{
+	float: left;
+	width: 64px;
+	height: 64px;
+	background: url(/images/public/public-icon.png) no-repeat -64px -12px;
+	margin: 0 18px 0 336px;
+}
+.hkico-info{
+	float: left;
+	width: 64px;
+	height: 64px;
+	background: url(/images/public/public-icon.png) no-repeat 0px -12px;
+	margin: 0 18px 0 82px;
+}
+.hk-24-18{
+	float: left;
+	width: 24px;
+	height: 18px;
+	background: url(/images/public/public-icon.png) no-repeat -64px -12px;
+}
+.v-phone{
+	background-position: 0px -90px;
+}
+.v-id{
+	background-position: -24px -90px;
+}
+.v-bag{
+	background-position: -48px -90px;
+}

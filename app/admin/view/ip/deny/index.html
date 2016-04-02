@@ -1,0 +1,43 @@
+{layout name='layout'}
+<form class="form-inline definewidth m20" action="{:U()}" method="get">搜索：
+    <input type="text" name="keyword" id="keyword"class="abc input-default" placeholder="" value="{$Think.get.keyword|htmlspecialchars}">
+    <button type="submit" class="btn btn-primary">查询</button>
+    <a href='{:U("add")}' class="btn btn-success" id="addnew">新增</a>
+    <a href='{:U("toConfig")}' type="button" class="btn">更新到配置</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th width="80">ID</th>
+        <th width="200">IP</th>
+        <th width="120">操作人</th>
+        <th width="150">操作时间</th>
+        <th width="150">封禁时间</th>
+        <th>封禁原因</th>
+        <th width="200">操作</th>
+    </tr>
+    </thead>
+        {foreach name='rows' item='row'}
+         <tr>
+            <td>{$row.id}</td>
+            <td>{$row.ip}</td>
+            <td>{$row.action_user_id|\\logic\\admin\\User::getNameById} ({$row.action_user_id})</td>
+            <td>{$row.action_time}</td>
+            <td>{$row.expire_time}</td>
+            <td>{$row.cause|htmlspecialchars}</td>
+            <td>
+                <a href="{:U('edit')}?id={$row.id}">编辑</a>
+                <a data-confirm="確定刪除？" href="{:U('del')}?id={$row.id}">刪除</a>
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<div>{$pager}</div>
+<script>
+$(function(){
+    $('[data-confirm]').click(function(){
+        var text = $(this).data('confirm');
+        if(!confirm(text)) return false;
+    });
+});
+</script>

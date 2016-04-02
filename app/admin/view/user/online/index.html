@@ -1,0 +1,51 @@
+{layout name='layout'}
+<form role="form" class="form-inline definewidth m20" action="" method="get">
+    <select name="type" style="width:80px;">
+        <option value="0">全部</option>
+        <option value="1" {eq name="Think.get.type" value="1"}selected{/eq}>会员</option>
+        <option value="-1" {eq name="Think.get.type" value="-1"}selected{/eq}>游客</option>
+    </select>
+    <input type="text" name='keyword' value="{$Think.get.keyword|htmlspecialchars}" />
+    <input type="submit" value="搜索" class='btn btn-primary'>
+    人数：{$total|intval}
+</form>
+<br>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>会话ID</th>
+        <th>会员ID</th>
+        <th>真实IP</th>
+        <th>代理IP</th>
+        <th>国家编码</th>
+        <th>登入時間</th>
+        <th>最后在线时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {foreach name='rows' item='row'}
+       <tr>
+            <td>{$row.session_id}</td>
+            <td>
+            {notempty name="row.user_id"}
+            {$row.user_id|\\logic\\user\\User::getNameById} (No.{$row.user_id})
+            {else/}
+            游客
+            {/notempty}
+            </td>
+            <td>{$row.client_ip}</td>
+            <td>{$row.forwarded_ip}</td>
+            <td>{$row.country_code}</td>
+            <td>{$row.login_time}</td>
+            <td>{$row.online_time}</td>
+            <td>
+                <a href="{:U('offline')}?session_id={$row.session_id}">强制下线</a>
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<div width='50%'>{$pager}</div>
+
+<script>
+
+</script>

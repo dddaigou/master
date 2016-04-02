@@ -1,0 +1,183 @@
+{extend name="public/base"/}
+{block name="title"}
+  <title>8591寶物交易網-香港站</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/index/index.css">
+{/block}
+{block name="head"}
+  {include file="public/head" /}
+{/block}
+{block name="content"}
+<div class="content-width index-main">
+  <div class="block-1 clearfix">
+    <div class="banner-blk">
+      <div class="lg-banner">
+        <ul>
+          <li id="ox_1"><img src="{$Think.config.static_url}/images/index/t11.png"></li>
+          <li id="ox_2"><img src="{$Think.config.static_url}/images/index/t11.png"></li>
+          <li id="ox_3"><img src="{$Think.config.static_url}/images/index/t11.png"></li>
+        </ul>
+      </div>
+      <div class="md-banner">
+        <img src="{$Think.config.static_url}/images/index/t22.png">
+      </div>
+      <div class="hk-guide idx-bg"></div>
+    </div>
+    <div class="site-info">
+      <h3 class="info-tle">網站公告</h3>
+      <div class="info-list">
+        <a href="#">賀！8591寶物交易香港版網站正式上線！</a>
+        <a href="#">賀！8591寶物交易香港版網站正式上線！</a>
+        <a href="#">賀！8591寶物交易香港版網站正式上線！</a>
+      </div>
+      <div class="info-login clearfix">
+        <a class="info-btn" href="#">免費註冊</a>
+        <a class="info-btn" href="#">會員登入</a>
+        <a class="info-btn" href="#" style="margin-right:0;">免費刊登</a>
+      </div>
+      <ul class="quick-fn clearfix">
+        <li class="q-f-item q-f-1">
+          <i class="idx-bg center-block"></i>
+          <span>新手幫助</span>
+        </li>
+        <li class="q-f-item q-f-2">
+          <i class="idx-bg center-block"></i>
+          <span>交易流程</span>
+        </li>
+        <li class="q-f-item q-f-3">
+          <i class="idx-bg center-block"></i>
+          <span>買家保障</span>
+        </li>
+        <li class="q-f-item q-f-4">
+          <i class="idx-bg center-block"></i>
+          <span>收費標準</span>
+        </li>
+        <li class="q-f-item q-f-5">
+          <i class="idx-bg center-block"></i>
+          <span>付款便利安全</span>
+        </li>
+        <li class="q-f-item q-f-6">
+          <i class="idx-bg center-block"></i>
+          <span>7*24服務</span>
+        </li>
+      </ul>
+      <div class="new-user">
+        <div class="n-u-icon idx-bg"></div>
+        <ul class="n-u-list">
+          {volist name="$index_new_users[new_user_list]" id="v" length="10"}
+          <li>歡迎<span style="color:#f45151;">{$v[user]}</span>加入8591<span style="color:#ff4e00;margin-left:5px;">[{$v[time]}]</span></li>
+          {/volist}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="block-2">
+    <h3 class="block-tle">
+      點卡熱賣
+      <a href="#">更多點卡&gt;&gt;</a>
+    </h3>
+    <ul class="card-list">
+      {volist name="index_hot_card" id="v"}
+      <li class="cl-item">
+        <span class="cl-75 idx-bg"></span>
+        <div class="cl-img idx-bg"></div>
+        <p class="cl-name"><span class="">{$v['card_name']}</span></p>
+        <p class="cl-o-price"><span class="cl-k">原價</span><del class="cl-v">{$v['old_price']}元</del></p>
+        <p class="cl-price"><span class="cl-k">折扣價</span><span class="cl-v" style="font-size:18px;color:#f00;">{$v['price']}元</span></p>
+      </li>
+      {/volist}
+      <li class="justify-fix"></li>
+    </ul>
+  </div>
+  <div class="block-3 clearfix">
+    <h3 class="block-tle">
+      熱門線上遊戲
+      <a href="#">更多熱門線上遊戲&gt;&gt;</a>
+    </h3>
+    <div class="online-game">
+      {volist name="$index_hot_pc_game" id="v"}
+        <div class="og-item">
+          <img class="og-img center-block" src="{$v['link']}" title="{$v[name]}">
+          {volist name="$v[goods_list]" id="val"}
+            <a class="og-link ele-ellipsis" href="#{$k[id]}" title="{$k[title]}">[{$val['item']}]{$val[title]}</a>
+          {/volist}
+        </div>
+      {/volist}
+    </div>
+    <div class="game-done">
+      <h3>最近成交<span style="float:right;font-size:13px;">已成交<span style="color:#ff4e00;font-size:15px;">{$index_new_pc_game_trade[total_count]}筆</span></span></h3>
+      <ul class="g-d-list">
+        {volist name="$index_new_pc_game_trade[new_trade_list]" id="v"}
+        <li class="clearfix">
+          <span style="float:left;">
+            <a href="{:U('goods/list')}?game_id={$v['game_id']}"><span style="color:#ff4e00;">【{$v[game_name]}】</span>
+            {$v[title]}</a>
+            <span class="g-d-time">{$v[time]}</span>
+          </span>
+        </li>
+        {/volist}
+      </ul>
+    </div>
+  </div>
+  <div class="block-4 clearfix">
+    <h3 class="block-tle">
+      熱門手機遊戲
+      <a href="#">更多熱門手機遊戲&gt;&gt;</a>
+    </h3>
+    <div class="mobile-game">
+      {volist name="$index_hot_mb_game" id="v"}
+      <div class="mg-item">
+        <p class="mg-logo clearfix">
+          <img class="mg-img" src="{$v['link']}" title="{$v[name]}">
+          <span class="mg-name">{$v[name]}</span>
+        </p>
+        {volist name="$v[goods_list]" id="k" length="3"}
+        <a class="mg-link ele-ellipsis" href="#{$k[id]}" title="{$k[title]}">[{$k['item']}]{$k[title]}</a>
+        {/volist}
+      </div>
+      {/volist}
+    </div>
+    <div class="game-done">
+      <h3>最近成交<span style="float:right;font-size:13px;">已成交<span style="color:#ff4e00;font-size:15px;">{$index_new_mb_game_trade['total_count']}筆</span></span></h3>
+      <ul class="g-d-list">
+        {volist name="$index_new_mb_game_trade[new_trade_list]" id="v"}
+          <li class="clearfix">
+            <span style="float:left;">
+              <a href="{:U('goods/list')}?game_id={$v['game_id']}"><span style="color:#ff4e00;">【{$v[game_name]}】</span>{$v[title]}</a>
+              <span class="g-d-time">{$v[time]}</span>
+            </span>
+          </li>
+        {/volist}
+      </ul>
+    </div>
+  </div>
+  <div class="block-5 clearfix">
+    <div class="beginner-item">
+      <div class="bi-p1">新手</div>
+      <img class="center-block" src="{$Think.config.static_url}/images/index/111.png">
+      <div class="bi-p2">新手必讀，8591防騙大全</div>
+    </div>
+    <div class="beginner-item">
+      <div class="bi-p1">必看</div>
+      <img class="center-block" src="{$Think.config.static_url}/images/index/111.png">
+      <div class="bi-p2">購買點卡玩家必看</div>
+    </div>
+    <div class="beginner-item">
+      <div class="bi-p1">揭秘</div>
+      <img class="center-block" src="{$Think.config.static_url}/images/index/111.png">
+      <div class="bi-p2">第三方詐騙大揭曉</div>
+    </div>
+    <div class="beginner-item">
+      <div class="bi-p1">安全</div>
+      <img class="center-block" src="{$Think.config.static_url}/images/index/111.png">
+      <div class="bi-p2">帳號交易安全</div>
+    </div>
+    <div class="justify-fix"></div>
+  </div>
+</div>
+{/block}
+{block name="foot"}
+  {include file="public/foot" ft_show_more="1" /}
+  <script>
+    seajs.use('src/index/index',function(){});
+  </script>
+{/block}

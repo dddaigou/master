@@ -1,0 +1,31 @@
+{layout name='layout'}
+<form role="form" class="form-inline definewidth m20" action="{:U()}" method="get">
+    搜索：
+    <input type="text" size="20" name='mobile' value="{$Think.get.mobile|htmlspecialchars}">
+    <label><input type="checkbox" name="is_user_id" value="1" {eq name="Think.get.is_user_id" value="1"}checked{/eq} /> 会员ID</label>
+    <input type="submit" value="查询" class='btn'>
+</form>
+<br>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th width="120">发送时间</th>
+        <th width="80">手机号</th>
+        <th width="60">类型</th>
+        <th width="60">验证码</th>
+        <th width="60">状态</th>
+        <th>失败原因</th>
+    </tr>
+    </thead>
+    {foreach name='rows' item='row'}
+       <tr>
+            <td>{$row.send_time}</td>
+            <td>{$row.mobile}</td>
+            <td>{$row.type|\\logic\\sms\\otp\\Type::get}</td>
+            <td>{$row.code}</td>
+            <td>{$row.status|\\logic\\sms\\otp\\Status::get}</td>
+            <td>{$row.error}</td>
+        </tr>
+        {/foreach}
+</table>
+<div width='50%'>{$page}</div>

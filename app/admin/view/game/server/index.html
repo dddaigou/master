@@ -1,0 +1,39 @@
+{layout name='layout'}
+<form class="form-inline definewidth m20" action="/game/index.html" method="get">
+    <a href='{:U("add")}?game_id={$Think.get.game_id}' class="btn btn-success" id="addnew">新增</a>
+    <a href="{:U('Game/index')}" class="btn btn-success">返回遊戲列表</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th width="80">ID</th>
+        <th width="200">名稱</th>
+        <th width="50">隱藏</th>
+        <th width="50">禁刊</th>
+        <th width="200">排序</th>
+        <th width="">操作</th>
+    </tr>
+    </thead>
+        {foreach name='rows' item='row'}
+         <tr>
+            <td>{$row.id}</td>
+            <td>{$row.name}</td>
+            <td>{notempty name="row.is_hidden"}是{/notempty}</td>
+            <td>{notempty name="row.is_deny_publish"}是{/notempty}</td>
+            <td>{$row.taxis}</td>
+            <td>
+                <a href="{:U('edit')}?id={$row.id}">编辑</a>
+                <a data-confirm="確定刪除？" href="{:U('del')}?id={$row.id}&game_id={$row.game_id}">刪除</a>
+            </td>
+        </tr>
+        {/foreach}
+</table>
+<div>{$pager}</div>
+<script>
+$(function(){
+    $('[data-confirm]').click(function(){
+        var text = $(this).data('confirm');
+        if(!confirm(text)) return false;
+    });
+});
+</script>

@@ -1,0 +1,82 @@
+{extend name="index@view/public/base_uc"/}
+{block name="title"}
+  <title>待出售商品-會員中心-8591寶物交易網</title>
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/public/icons.css">
+  <link rel="stylesheet" type="text/css" href="{$Think.config.static_url}/css/usercenter/index.css">
+{/block}
+{block name="content"}
+<div>
+    <button name="">更新</button>
+    <button value="">下架</button>
+    <button value="">刪除</button>
+</div>
+
+<div align="center">{$page}</div>
+<table border="1px">
+    <tr>
+        <th><input type="checkbox" name="id"/>全選</th>
+        <th>商品信息</th>
+        <th>類型</th>
+        <th>價格</th>
+        <th>庫存</th>
+        <th>瀏覽數</th>
+        <th>刊登時間</th>
+        <th>操作</th>
+    </tr>
+    {foreach  name="list" id="vo"}
+    <tr>
+        <td><input type="checkbox" name="id" value="{$vo.id}" /></td>
+        <td>
+            <span class="title">
+            <a id="title" href="{:U('goods/detail@www')}?id={$vo.id}">{$vo.title}</a>
+            </span>
+            <div class="gameServer">
+                <span class="">遊戲伺服：</span>
+                <span class="gameName">
+                    <a class="" href="{:U('index@i')}?game_id={$vo['game_id']}">{:\\logic\\game\\Game::getNameById($vo.game_id)}</a>
+                </span>
+                <span class="serverName">
+                    <span class="">/</span>
+                    <a class="" href="{:U('index@i')}?server_id={$vo['server_id']}">{:\\logic\\game\\Server::getNameById($vo.server_id)}</a>
+                </span>
+            </div>
+            <div class="div_game">商品編號：{$vo.id}</div>
+        </td>
+        <td>
+            <div>{:\\logic\\goods\\Type::get($vo.type?$vo.type:3)}</div>
+        </td>
+        <td>
+            <div>{$vo.price}元</div>
+        </td>
+        <td>
+            <div>{$vo.stock}</div>
+            <div><button>修改</button></div>
+        </td>
+        <td>
+            <div>100</div>
+        </td>
+        <td>
+            <div>{$vo.post_time}</div>
+        </td>
+        <td>
+            <div  style="position:relative;">
+                <a  rel="3" ware_id="{$vo.id}" href="javascript:;">刪除</a>
+                <a class="operating" rel="2" ware_id="{$vo.id}" href="javascript:;">下架</a><br>
+                <a class="operating" href="{:U('edit@i')}?id={$vo.id}" target="_blank">編輯</a>
+                <a class="operating " ware_id="{$vo.id}" rel="4" href="javascript:;">更新</a><br>
+                <a class="operating " href="{:U('recommend/buy@i')}?id={$vo.id}" target="_blank">購買推薦</a>
+                <br>
+                <a class="operating" href="{:U('seller.trade/establish@i')}?id={$vo.id}" target="_blank">開設專屬</a>
+            </div>
+        </td>
+    </tr>
+    {/foreach}
+</table>
+<div align="center">{$page}</div>
+
+{/block}
+{block name="foot"}
+<script>
+  seajs.use('src/usercenter/index',function(){});
+</script>
+{/block}

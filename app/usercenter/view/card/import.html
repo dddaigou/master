@@ -1,0 +1,44 @@
+{extend name="index@view/public/base_uc"/}
+{block name="content"}
+<form method="post" action="{:U()}" enctype="multipart/form-data">
+  點卡庫存分類
+  <select name="card_id" id="card_id">
+      <option value="">請選擇卡類</option>
+  </select>
+  <select name="denom_id" id="denom_id">
+      <option value="">請選擇面額</option>
+  </select>
+  上传库存：<input name="card_list" id="card_list" type="file"  value="选择文件"/>
+  <input type="submit" value="上传库存">
+  </form>
+{/block}
+
+{block name="foot"}
+  <script>
+    seajs.use('config/card',function(card){
+            var card_select     = '<option value="">請選擇卡類</option>';
+            var dom    = {
+                card_id:$('#card_id'),
+                denom_id:$('#denom_id')
+            };
+            for(var i in card){
+                card_select += '<option value="'+card[i]['id']+'">'+card[i]['name']+'</option>';
+            }
+            dom.card_id.html(card_select);
+            dom.card_id.change(function(){
+                if ($(this).val() == ''){
+                  dom.denom_id.html('<option value="">請選擇面額</option>');
+                  return;
+                } 
+                var denoms  = card['_'+$(this).val()]['denoms'];
+                if(denoms){
+                    var denom_select    = '<option value="">請選擇面額</option>';
+                    for (var i in denoms){
+                        denom_select += '<option value="'+denoms[i]['id']+'">'+denoms[i]['denom']+'</option>';
+                    }
+                }
+                dom.denom_id.html(denom_select);
+            });
+    });
+  </script>
+{/block}
