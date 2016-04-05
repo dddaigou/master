@@ -8,6 +8,6 @@ define(function (require, exports, module) {
         speed:4000,
         aSpeed:500,
         animate:'easeOutSine',
-        effect:'fade'
+        effect:'fade' 
 	});
 });
