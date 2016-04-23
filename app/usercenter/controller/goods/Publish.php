@@ -7,26 +7,16 @@ use think\Session;
 use logic\user\User;
 use logic\goods\Transfer;
 use app\usercenter\controller\Common;
+use logic\goods\Type as GoodsType;
 
 class Publish extends Common
 {
     // 選擇遊戲伺服商品類型
     public function select()
     {
-        $game_id                = Input::get('game_id/d',0);
-        $server_id              = Input::get('server_id/d',0);
-        $type                   = Input::get('type/d',0);
-        if (!empty($game_id)) {
-            $this->assign('game_id',$game_id);
+        if (I('test')) {
+            echo json_encode(GoodsType::getstype(0,1));exit;
         }
-        if (!empty($server_id)) {
-            $this->assign('server_id',$server_id);
-        }
-        if (!empty($type)) {
-            $this->assign('type',$type);
-        }
-        $is_card_seller         = User::isCardSeller($user_id);
-        $this->assign('is_card_seller',$is_card_seller);
         return V();
     }
 

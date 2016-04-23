@@ -3,24 +3,25 @@
 <input type="hidden" name="id" value="{$row.id}" />
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td width="10%" class="tableleft">類型ID</td>
+            <td width="10%" class="tableleft">上一级：</td>
             <td>
                 {present name="row.id"}
-                <input type="hidden" name="id" value="{$row.id}" />{$row.id}
+                <input type="hidden" name="id" value="{$row.id}" />
+                <input type="hidden" name="parent_id" value="{$row.parent_id}" />{$row.parent_name}
                 {else/}
-                自動生成
+                <input type="hidden" name="parent_id" value="{$data.id}" />{$data.name}
+                <input type="hidden" name="level" value="{$data.level}" />
                 {/present}
             </td>
         </tr>
         <tr>
             <td class="tableleft">名稱</td>
-            <td><input type="text" name="type_name" value="{$row.type_name}" /></td>
+            <td><input type="text" name="name" value="{$row.name}" /></td>
         </tr>
         <tr>
             <td class="tableleft">相关属性</td>
             <td>
-                <label><input type="checkbox" name="is_hidden" value="1" {eq name="row.is_hidden" value="1" }checked{/eq} /> 隱藏</label>
-                <label><input type="checkbox" name="is_deny_publish" value="1" {eq name="row.is_deny_publish" value="1" }checked{/eq} /> 禁止刊登</label>
+                <label><input type="checkbox" name="status" value="1" {eq name="row.status" value="1" }checked{/eq} /> 隱藏</label>
             </td>
         </tr>
         <tr>

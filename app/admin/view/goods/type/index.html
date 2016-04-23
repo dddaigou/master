@@ -5,31 +5,58 @@
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
-        <th width="80">ID</th>
-        <th width="200">名称</th>
-        <th width="50">隱藏</th>
-        <th width="50">禁刊</th>
+        <th width="200">层级+名称</th>
+        <th width="50">状态</th>
         <th width="">操作</th>
     </tr>
     </thead>
         {foreach name='rows' item='row'}
          <tr>
-            <td>{$row.id}</td>
-            <td>{$row.type_name}</td>
-            <td>{notempty name="row.is_hidden"}是{/notempty}</td>
-            <td>{notempty name="row.is_deny_publish"}是{/notempty}</td>
+            <td>┠ {$row.name} <span class="openSubType" data-url="{:U('getSubType')}?id={$row.id}">展开</span></td>
             <td>
-                <a href="{:U('edit')}?id={$row.id}">编辑</a>   
+            {if condition="$row.status eq 0"}正常{else}隐藏{/if}
+            </td>
+            <td>
+                <a href="{:U('add')}?id={$row.id}">增加子类</a>|
+                <a href="{:U('edit')}?id={$row.id}">编辑</a>|
                 <a data-confirm="確定刪除？" href="{:U('del')}?id={$row.id}">刪除</a>                
             </td>
         </tr>
         {/foreach}
 </table>
 <script>
-$(function(){
+$(document).ready(function(){
     $('[data-confirm]').click(function(){
         var text = $(this).data('confirm');
         if(!confirm(text)) return false;
     });
+    $(document).on("click",'.openSubType',function(){
+        var clickObj = $(this)
+        clickObj.hide();
+        var data_url = $(this).attr('data-url');
+        htmlobj=$.ajax({
+            url:data_url,
+            async:true,
+            dataType:"json",
+            success:function(data){
+                $.each(data,function(k,v) {
+                    var status = v.status>0?'隐藏':'正常';
+                    var level  = '';
+                    for (var i = 1; i < v.level; i++) {
+                        level += '　　';
+                    }
+                    level += '┖';
+                    var subTypes = "<tr><td>"+level+v.name+" <span class='openSubType' data-url='{:U('getSubType')}?id="+v.id+"'>展开</span></td>"
+                    + "<td>"+status+"</td>"
+                    + "<td><a href='{:U('add')}?id="+v.id+"'>增加子类</a>"+
+                    "| <a href='{:U('edit')}?id="+v.id+"'>编辑</a>"+
+                    "| <a href='{:U('del')}?id="+v.id+"'>刪除</a>"+
+                    "</td></tr>";
+                    // + "<td><a href='"+U('addSubType')+"?id="+v.id+"'></td></tr>";
+                    clickObj.parent().parent().after(subTypes);
+                })
+            }
+        });
+    })
 });
 </script>

@@ -5,12 +5,16 @@ use think\Response;
 use think\Input;
 use org\Validate;
 use app\admin\controller\Common;
+use app\common\util\Tree;
+use logic\goods\Type as GoodsType;
 
 class Type extends Common
 {
     public function index()
     {
-        $rows   = D('GoodsType')->select();
+        $GoodsTypeModel     = D('GoodsType');
+        $rows   = $GoodsTypeModel->where('parent_id=0')->select();
+        // dump($res_tree);exit;
         return V('', ['rows'=>$rows]);
     }
 
@@ -25,21 +29,28 @@ class Type extends Common
         }
         return Response::success('刪除成功', '', U('index'));
     }
-
+    //获取子类
+    public function getSubType()
+    {
+        $parent_id = Input::get('id/d',0);
+        $all = Input::get('all/d',0);
+        $res    = GoodsType::getstype($parent_id,$all);
+        echo json_encode($res);
+    }
     public function add()
     {
         if (IS_POST) {
             $rules  = [
-                ['type_name', '名稱必須', 'require'],
-                ['type_name', '名稱長度超出範圍', 'length', '6,30'],
+                ['name', '名稱必須', 'require'],
+                ['name', '名稱長度超出範圍', 'length', '6,30'],
+                ['level', '层级有误', '>=', '0'],
             ];
             // 校驗參數
             if (!Validate::valid($_POST, $rules)) {
                 return Response::error(Validate::getError());
             }
-            // 處理 is_hidden
-            if (!isset($_POST['is_hidden'])) $_POST['is_hidden'] = 0;
-            if (!isset($_POST['is_deny_publish'])) $_POST['is_deny_publish'] = 0;
+            if (!isset($_POST['status'])) $_POST['status'] = 0;
+            $_POST['level']     += 1;
             // 編輯數據
             $GoodsTypeModel     = D('GoodsType');
             if (!$GoodsTypeModel->create($_POST)) {
@@ -51,7 +62,13 @@ class Type extends Common
             // 編輯成功
             return Response::success('新增成功', '', U('index'));
         } else {
-            return V('');
+            $parent_id      = Input::get('id');
+            if ($parent_id) {
+                $parent_data    = D('GoodsType')->find($parent_id);
+            }else{
+                $parent_data = ['id'=>0,'name'=>'顶级','level'=>0];
+            }
+            return V('',['data'=>$parent_data]);
         }
     }
 
@@ -61,16 +78,14 @@ class Type extends Common
             $rules  = [
                 ['id', '缺少參數ID', 'require'],
                 ['id', '參數ID錯誤', 'number'],
-                ['type_name', '名稱必須', 'require'],
-                ['type_name', '名稱長度超出範圍', 'length', '6,30'],
+                ['name', '名稱必須', 'require'],
+                ['name', '名稱長度超出範圍', 'length', '6,30'],
             ];
             // 校驗參數
             if (!Validate::valid($_POST, $rules)) {
                 return Response::error(Validate::getError());
             }
-            // 處理 is_hidden
-            if (!isset($_POST['is_hidden'])) $_POST['is_hidden'] = 0;
-            if (!isset($_POST['is_deny_publish'])) $_POST['is_deny_publish'] = 0;
+            if (!isset($_POST['status'])) $_POST['status'] = 0;
             // 編輯數據
             $GoodsTypeModel     = D('GoodsType');
             if (!$GoodsTypeModel->create($_POST)) {
@@ -83,9 +98,18 @@ class Type extends Common
             // 編輯成功
             return Response::success('編輯成功', '', U('index'));
         } else {
-            $row    = D('GoodsType')->getbyId(Input::get('id'));
+            if ($id=Input::get('id')) {
+                $row    = M()->table('dd_goods_type as a')
+                ->join('left join dd_goods_type as b on a.parent_id=b.id')
+                ->field('a.*,b.name as parent_name')
+                ->where('a.id='.Input::get('id'))
+                ->find();
+            }
             if (empty($row)) {
                 return Response::error('參數錯誤或已被刪除');
+            }
+            if ($row['parent_id']==0) {
+                $row['parent_name'] = '顶级';
             }
             return V('add', ['row'=>$row]);
         }

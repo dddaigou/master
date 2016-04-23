@@ -54,4 +54,15 @@ class Type
     {
         return D('GoodsType')->getFieldById($type_id, 'is_deny_publish') ? true : false;
     }
+    static function getstype($parent_id=0,$all=0)
+    {
+        $types  = D('GoodsType')->where('parent_id='.$parent_id)->order('id DESC')->select();
+        if (!empty($types)&&$all) {
+            foreach ($types as $key => $val) {
+                $types[$key]['subType'] = self::getstype($val['id'],$all);
+
+            }
+        } 
+        return $types;
+    }
 }
