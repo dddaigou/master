@@ -1,7 +1,7 @@
 define(function (require, exports, module) {
-    var gamelist = require('game');
+    var goodType = require('goodType');
 
-    var pcGame  = '<li class="g-tle g-pc">線上遊戲</li>',
+    var goodItem  = '<li class="g-tle g-pc">商品分类</li>',
         mobGame = '<li class="g-tle g-mob">手機遊戲</li>',
         webGame = '<li class="g-tle g-web">網頁遊戲</li>';
 
@@ -27,22 +27,26 @@ define(function (require, exports, module) {
         sid:        $('.step1-box').data('sid'),
         tid:        $('.step1-box').data('tid')
     };
-    for(var i in gamelist){
-        if(gamelist[i]['type'] == 'pc'){
-            pcGame += '<li class="sel-item" data-id="'+gamelist[i]['id']+'" title="'+gamelist[i]['name']+'">'+gamelist[i]['name']+'<i></i></li>';
-        }else if(gamelist[i]['type'] == 'mobile'){
-            mobGame += '<li class="sel-item" data-id="'+gamelist[i]['id']+'" title="'+gamelist[i]['name']+'">'+gamelist[i]['name']+'<i></i></li>';
-        }else if(gamelist[i]['type'] == 'web'){
-            webGame += '<li class="sel-item" data-id="'+gamelist[i]['id']+'" title="'+gamelist[i]['name']+'">'+gamelist[i]['name']+'<i></i></li>';
-        }
+    for(var i in goodType){
+        //if(goodType[i]['type'] == 'pc'){
+        goodItem += '<li class="sel-item" data-id="'+goodType[i]['id']+'" title="'+goodType[i]['name']+'">'+goodType[i]['name']+'<i></i></li>';
+        // }else if(goodType[i]['type'] == 'mobile'){
+        //     mobGame += '<li class="sel-item" data-id="'+goodType[i]['id']+'" title="'+goodType[i]['name']+'">'+goodType[i]['name']+'<i></i></li>';
+        // }else if(goodType[i]['type'] == 'web'){
+        //     webGame += '<li class="sel-item" data-id="'+goodType[i]['id']+'" title="'+goodType[i]['name']+'">'+goodType[i]['name']+'<i></i></li>';
+        // }
     }
-
+    //console.log(goodType)
     //提交data
     var submitData ={
         game_id:    '',
         server_id:  '',
         type:       ''
     };
+    //new submit data
+    var newSubmit = {
+
+    }
     //重置數據
     function resetData(gid){
         submitData.game_id      = gid;
@@ -51,87 +55,89 @@ define(function (require, exports, module) {
     }
     //設置遊戲
     function setGame(gid){
-        $dom.glist.html(pcGame+mobGame+webGame);
+        $dom.glist.html(goodItem);
     }
     //設置伺服器
     function setServer(gid){
         var severList = '';
 
-        for(var i in gamelist){
-            if(gamelist[i]['id'] == gid){
-                for(var k in gamelist[i]['servers']){
-                    severList += '<li class="sel-item" data-id="'+gamelist[i]['servers'][k]['id']+'" title="'+gamelist[i]['servers'][k]['name']+'">'+gamelist[i]['servers'][k]['name']+'<i></i></li>';
+        for(var i in goodType){
+            if(goodType[i]['id'] == gid){
+                for(var k in goodType[i]['subType']){
+                    severList += '<li class="sel-item" data-id="'+goodType[i]['subType'][k]['id']+'" title="'+goodType[i]['subType'][k]['name']+'">'+goodType[i]['subType'][k]['name']+'<i></i></li>';
                 }
                 break;
             }
         }
         $dom.slist.html(severList);
-        return gid;
     }
     //設置種類
-    function setType(gid){
+    function setType(gid,sid){
         var typeList = '';
-        for(var i in gamelist){
-            if(gamelist[i]['id'] == gid){
-                for(var k in gamelist[i]['types']){
-                    typeList += '<li class="sel-item no-next" data-id="'+k+'" title="'+gamelist[i]['types'][k]+'">'+gamelist[i]['types'][k]+'<i></i></li>';
+        for(var i in goodType){
+            if(goodType[i]['id'] == gid){
+
+                for(var k in goodType[i]['subType']){
+                    if(goodType[i]['subType'][k]['id'] == sid){
+
+                        for(var j in goodType[i]['subType'][k]['subType']){
+                            typeList += '<li class="sel-item no-next" data-id="'+goodType[i]['subType'][k]['subType'][j]['id']+'" title="'+goodType[i]['subType'][k]['subType'][j]['name']+'">'+goodType[i]['subType'][k]['subType'][j]['name']+'<i></i></li>';
+                        }
+                        break;
+                    }
                 }
                 break;
             }
         }
         $dom.tlist.html(typeList);
-        return gid;
     }
-    //遊戲搜索
-    function searchGame(gName){
-        var sflag       = 0,
-            gameSearch  = '';
+    // //遊戲搜索
+    // function searchGame(gName){
+    //     var sflag       = 0,
+    //         gameSearch  = '';
             
-        if(gName == ''){
-            setGame();
-            $dom.slist.parent().hide();
-            $dom.tlist.parent().hide();
-            $dom.navGame.hide();
-            $dom.navServer.hide();
-            $dom.navType.hide();
-        }else{
-            regName = new RegExp(gName,"gi");
-            for(var i in gamelist){
-                if(gamelist[i]['name'].match(regName)){
-                    gameSearch += '<li class="sel-item" data-id='+gamelist[i]['id']+' title="'+gamelist[i]['name']+'">'+gamelist[i]['name']+'<i></i></li>';
-                    sflag = 1;
-                }
-            }
-            if(!sflag){  //假如遊戲沒被搜索
-                var notFound = "<li>很抱歉沒有搜索到“<span style='color:#f60;'>"+gName+"</span>”相關遊戲。</li>";
-                    gameSearch += notFound;
-            }
-            //添加進遊戲列表
-            $dom.glist.html(gameSearch);
-        }
-    }
+    //     if(gName == ''){
+    //         setGame();
+    //         $dom.slist.parent().hide();
+    //         $dom.tlist.parent().hide();
+    //         $dom.navGame.hide();
+    //         $dom.navServer.hide();
+    //         $dom.navType.hide();
+    //     }else{
+    //         regName = new RegExp(gName,"gi");
+    //         for(var i in gamelist){
+    //             if(gamelist[i]['name'].match(regName)){
+    //                 gameSearch += '<li class="sel-item" data-id='+gamelist[i]['id']+' title="'+gamelist[i]['name']+'">'+gamelist[i]['name']+'<i></i></li>';
+    //                 sflag = 1;
+    //             }
+    //         }
+    //         if(!sflag){  //假如遊戲沒被搜索
+    //             var notFound = "<li>很抱歉沒有搜索到“<span style='color:#f60;'>"+gName+"</span>”相關遊戲。</li>";
+    //                 gameSearch += notFound;
+    //         }
+    //         //添加進遊戲列表
+    //         $dom.glist.html(gameSearch);
+    //     }
+    // }
     //提交
     function s1submit(){
-        if($dom.subForm.data('card') == false){  //非卡商
-            if(submitData.game_id && submitData.server_id && submitData.type){
-                $dom.subGid.val(submitData.game_id);
-                $dom.subSid.val(submitData.server_id);
-                $dom.subTid.val(submitData.type);
-                $dom.subForm.submit();
-            }else{
-                alert('請選擇完整')
-            }
+        //console.log(submitData)
+        if(submitData.game_id && submitData.server_id && submitData.type){
+            $dom.subGid.val(submitData.game_id);
+            $dom.subSid.val(submitData.server_id);
+            $dom.subTid.val(submitData.type);
+            $dom.subForm.submit();
         }else{
-
+            alert('請選擇完整')
         }
     }
-    //記錄預選
-    function getPreset(gid,sid){
-        if(gid){
-            $dom.glist.find('[data-id='+gid+']').trigger('click');
-            $dom.slist.find('[data-id='+sid+']').trigger('click');
-        }
-    }
+    // //記錄預選
+    // function getPreset(gid,sid){
+    //     if(gid){
+    //         $dom.glist.find('[data-id='+gid+']').trigger('click');
+    //         $dom.slist.find('[data-id='+sid+']').trigger('click');
+    //     }
+    // }
     //搜索
     $dom.srhInput.focus(function(){
         $(this).select();
@@ -154,7 +160,7 @@ define(function (require, exports, module) {
         $dom.navServer.hide();
         $dom.navType.hide();
         setServer(gid);
-        setType(gid);
+        submitData.game_id = gid;
         $dom.slist.parent().fadeIn('fast');
         $dom.navGame.html(gn).show();
         resetData(gid);
@@ -164,7 +170,8 @@ define(function (require, exports, module) {
         var $this   = $(this);
         var sid     = $this.data('id');
         var sn      = $this.attr('title');
-
+        var pid     = $this.data('parent_id');
+        setType(submitData.game_id,sid);
         $dom.slist.find('.sel-item').removeClass('sel-active');
         $this.addClass('sel-active');
         $dom.navServer.html('&gt; '+sn).show();
@@ -189,6 +196,6 @@ define(function (require, exports, module) {
     //初始化
     $(function(){
         setGame();
-        getPreset(val.gid,val.sid)
+        //getPreset(val.gid,val.sid)
     });
 });
