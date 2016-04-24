@@ -6,16 +6,10 @@
     <iframe id="uploadIframe" name="uploadiframe" style="display:none;"></iframe>
   </form>
   <p style="margin:5px 10px 10px;color:#c70000;"><span class="ub-icon ub-i-icon"></span>注意：圖檔集內圖檔有效使用時間為一年，超過有效使用時間的圖檔將被系統自動刪除。</p>
-  <div class="gallery-list">
-    <div class="g-l-item">
-      <div class="g-l-imgbox"><img src="{$Think.config.static_url}/images/index/bm.png"></div>
-      <p>
-        <a href="javascript:;" class="g-c-sel" data-link="{$Think.config.static_url}/images/index/111.png">選擇</a>
-        <a href="javascript:;" class="g-c-del" data-link="{$Think.config.static_url}/images/index/111.png">刪除</a>
-      </p>
-    </div>
-  </div>
+  <div class="gallery-list"></div>
   <div class="gallery-ft hk-page"></div>
+  <input type="hidden" value="{:U('/goods.image/manager@i')}" id="reqUrl">
+  <input type="hidden" value="{:U('/@image')}" id="imgHttpUrl">
 </div>
 <div class="img-shadow"></div>
 <div class="img-tip">插入成功！</div>

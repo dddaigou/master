@@ -1,7 +1,6 @@
 define(function (require, exports, module) {
 
-    var gamelist= require('game');
-        img     = require('../plugin/img_gallery.js');
+    var img     = require('../plugin/img_gallery.js');
 
     var $dom = { 
         selServer:  $('.sb-server'),
@@ -15,40 +14,22 @@ define(function (require, exports, module) {
         tleNum:     $('.now-tle-num'),
         kucun:      $('.sb-num'),
         content:    $('.sb-content'),
-        sendTime:   $('.sb-send-time'),
+        brand:      $('.sb-send-time'),
+        subUrl:     $('#submitUrl'),
         subBtn:     $('.publish-submit'),
 
+        tip:        $('.img-tip'),
         gallery:    $('.img-gallery'),
         galleryS:   $('.img-shadow'),
         imgBox:     $('.img-box'),
         addImg:     $('.add-img'),
-        selImg:     $('.selected-img')
+        selImg:     $('.selected-img'),
 
     };
-    var val = {
-        gid:        $('.step2-box').data('gid'),
-        sid:        $('.step2-box').data('sid'),
+    var pageData = {
         tid:        $('.step2-box').data('tid')
     };
-    var option = '';
-    for(var i in gamelist){
-        if(gamelist[i]['id'] == val.gid){
-            for(var k in gamelist[i]['servers']){
-                if(gamelist[i]['servers'][k]['id'] == val.sid){
-                    option += '<option value="'+gamelist[i]['servers'][k]['id']+'" selected>'+gamelist[i]['servers'][k]['name']+'</option>';
-                }else{
-                    option += '<option value="'+gamelist[i]['servers'][k]['id']+'">'+gamelist[i]['servers'][k]['name']+'</option>';
-                }
-            }
-        }
-    }
 
-    //提交data
-    var submitData ={};
-    //獲取服務器
-    function getServer(){
-        $dom.selServer.html(option)
-    }
     //標題長度
     function tleSize(tle){
         var tlength = tle.length;
@@ -61,45 +42,6 @@ define(function (require, exports, module) {
             flag = 1;
         }
         return flag;
-    }
-    //遊戲幣數量判斷
-    function checkYxbNum(){
-        var flag = 0;
-        if($dom.yxbNum.val()){
-            flag = 1
-        }
-        return flag;
-    }
-    //幣值計算
-    function countYxb(){
-        var result      = '',
-            yxb         = $dom.yxbNum.val()*1,
-            unitCheck   = $('input[name=currency_unit]:checked').val();
-            unitTxt     = $('input[name=currency_unit][value='+unitCheck+']').data('txt'),
-            unitVal     = $('input[name=currency_unit][value='+unitCheck+']').data('unit')*1,
-            price       = $dom.price.val()*1;
-
-        if(yxb&&price&&unitCheck){
-            result      = (yxb / price).toFixed(2);
-            var str     = '<span class="sunshine-txt">1元='+result+unitTxt+'</span>';
-            var data    = {
-                yxb:     yxb,
-                unitTxt: unitTxt,
-                price:   price,
-                type:    1
-            };
-            $dom.aCount.html(str);
-            tleFill(data);
-        }
-    }
-    //自動標題
-    function tleFill(option){
-        if(option.type == 1){ //遊戲幣
-            var str = option.yxb + option.unitTxt+'='+option.price+'元';
-            $dom.aTle.val(str);
-        }else if(option.type == 2){
-            //其他
-        }
     }
     //添加更多
     function addImg(){
@@ -116,16 +58,16 @@ define(function (require, exports, module) {
             $dom.addImg.hide();
         }
     }
-    //獲取圖片數據
-    var imgVal  = $dom.selImg.val().split(',');
-    var imgJson = {}; 
-    for(var i = 0;i<imgVal.length;i++){
-        imgJson[i] = imgVal[i];
+    //显示图档集
+    function showImgItem(){
+        img.getImgList();
+        $dom.gallery.show();
+        $dom.galleryS.show();
     }
     //插入圖片
-    function insertImg(url){
+    function insertImg(option){
         if($('.img-item').not('.has-img').length){
-            var img = '<img src="'+url+'"><a href="javascript:;" class="del-img">刪除</a>';
+            var img = '<img src="'+option.url+'"><a href="javascript:;" class="del-img" data-id="'+option.id+'">刪除</a>';
             $('.img-item').not('.has-img').eq(0).append(img).addClass('has-img');
             collectImg();
         }else{
@@ -134,58 +76,86 @@ define(function (require, exports, module) {
     }
     //刪除圖片
     function delImg(id){
-        imgJson[id] = '';
-        $('.img-item').eq(id).removeClass('has-img').empty();
+        $('.del-img[data-id='+id+']').parent().removeClass('has-img').empty();
         collectImg();
     }
+    //圖片數據
+    var imgJson = [];
     //收集圖片數據
     function collectImg(){
+        imgJson = [];
         $('.img-item').each(function(i){
             var $this = $(this);
             if($this.hasClass('has-img')){
-                imgJson[i] = $this.find('img').attr('src');
-            }else{
-                imgJson[i] = '';
+                imgJson.push($this.find('.del-img').data('id'));
             }
         });
-        var data = '';
-        for(var i in imgJson){
-            if(imgJson[i]){
-                data += imgJson[i]+',';
+        submitData.images = imgJson+'';
+        console.log(submitData)
+    }
+    //提交data
+    var submitData ={
+        brand:'11',
+        title:'',
+        price:'',
+        stock:'',
+        images:'',
+        detail:'',
+        type:pageData.tid
+    };
+    //整合数据
+    function s2submit(){
+    submitData.detail = $dom.content.val();
+        for(var i in submitData){
+            if(!submitData[i]){
+                break;
+                alert('信息填写不完整');
+                return false;
             }
         }
-        $dom.selImg.val(data);
+        $.ajax({
+            type:       'post',
+            url:        $dom.subUrl.val(),
+            dataType:   'json',
+            data:       submitData,
+            success:    function(info){
+                console.log(info)
+            }
+        });
     }
+    //选择品牌
+    $dom.brand.change(function(){
+        var $this = $(this);
+        if($this.val()){
+            submitData.brand = $this.val();
+        }else{
+            submitData.brand = '';
+        }
+    });
     //輸入標題
     $dom.title.keyup(function(){
         var $this = $(this);
         tleSize($this.val());
-    });
-    $dom.tle.keyup(function(){
-        var $this = $(this);
-        tleSize($this.val());
+        submitData.title = $this.val();
     });
     //價格輸入
     $dom.price.keyup(function(){
         var $this = $(this);
         var $tip  = $this.parent().siblings('.ub-tip');
-
         var val   = $this.val().replace(/\D/g,'');
-        $this.val(val);
 
-        if(checkPrice($this.val())){
+        $this.val(val);
+        if(checkPrice(val)){
             $tip.hide();
-            countYxb();
+            submitData.price = val;
         }else{
             $tip.show();
         }
     });
-    //幣值輸入
-    $dom.yxbNum.keyup(function(){
-        countYxb();
-    });
-    $dom.yxbUnit.change(function(){
-        countYxb();
+    //填入库存
+    $dom.kucun.keyup(function(){
+        var $this = $(this);
+        submitData.stock = $this.val();
     });
     //添加圖檔
     $dom.addImg.click(function(){
@@ -193,23 +163,45 @@ define(function (require, exports, module) {
     });
     //圖檔+号
     $dom.imgBox.on('click','.img-item',function(){
-        $dom.gallery.show();
-        $dom.galleryS.show();
+        showImgItem();
     });
     //图档集插入
+    var denyRepeat  = '';
+    var showTip     = '';
     $dom.gallery.on('click','.g-c-sel',function(){
-        var url = img.getImg($(this));
-        insertImg(url);
+        var option = img.getImg($(this));
+        if(denyRepeat != option.id){
+            insertImg(option);
+            denyRepeat = option.id;
+            clearTimeout(showTip);
+            $dom.tip.fadeIn('fast');
+            showTip  = setTimeout(function(){
+                $dom.tip.fadeOut('fast');
+            },800);
+            
+        }else{
+            alert('请勿重复插入')
+        }
     });
+    // $dom.imgBox.on('dbclick','.g-l-imgbox',function(e){
+    //     var $this  = $(this);
+    //     var $sel   = $this.parent().find('.g-c-sel')
+    //     var option = img.getImg($sel);
+    //     insertImg(option);
+    // });
     //圖檔刪除
     $dom.imgBox.on('click','.del-img',function(e){
         e.stopPropagation();
         var $this = $(this);
-        var i = $this.parent().index();
+        var i = $this.data('id');
         delImg(i);
+    });
+    //提交按钮
+    $dom.subBtn.click(function(){
+        s2submit();
     });
     //初始化
     $(function(){
-        getServer();
+
     });
 });

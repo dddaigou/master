@@ -37,6 +37,7 @@
       <div class="sb-l-name"><span class="sb-need">*</span>品牌：</div>
       <div class="sb-l-val">
         <select class="sb-control sb-send-time">
+          <option value="0">请选择</option>
           {volist name="transfer_time_list" id="v"}
           <option value="{$key}">{$v}</option>
           {/volist}
@@ -70,7 +71,7 @@
       <div class="sb-l-val">
         <p class="sb-img-tip">上傳商品圖檔，提高關注度有利於出售，最多可上傳<span style="color:#ff4e00;">15張</span>圖檔。</p>
         <div class="img-box clearfix">
-          <div class="img-item has-img"><img src="{$Think.config.static_url}/images/index/bm.png"><a href="javascript:;" class="del-img">刪除</a></div>
+          <div class="img-item"></div>
           <div class="img-item"></div>
           <div class="img-item"></div>
           <div class="img-item"></div>
@@ -78,7 +79,6 @@
         </div>
         <div class="add-img">添加更多</div>
       </div>
-      <input type="hidden" class="selected-img" value="asdasd,qweqewe,weqwe,">
     </div>
     <div class="sb-line clearfix">
       <div class="sb-l-name"><span class="sb-need">*</span>商品詳情：</div>
@@ -89,6 +89,7 @@
     <div class="hk-btn hk-orange-btn publish-submit center-block">提交刊登</div>
   </div>
   {include file="index@view/public/img_gallery"}
+  <input type="hidden" id="submitUrl" value="{:U('goods.publish/publish@i')}">
 {/block}
 {block name="foot"}
   {include file="index@view/public/foot"}

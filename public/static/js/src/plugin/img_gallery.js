@@ -13,40 +13,56 @@ define(function(require, exports, module) {
         bigBox:         $('.img-gallery'),
         shadow:         $('.img-shadow'),
         close:          $('.gallery-close'),
-        tip:            $('.img-tip')
+        reqUrl:         $('#reqUrl'),
+        httpUrl:        $('#imgHttpUrl')
     };
-    var showTip = '';
+    //html填充图片
+    function fillImg(id,url){
+        var http  = $dom.httpUrl.val();
+        var link  = http+'/'+url;
+        var html  = '<div class="g-l-item">'+
+                    '<div class="g-l-imgbox"><img src="'+link+'"></div>'+
+                    '<p>'+
+                    '<a href="javascript:;" class="g-c-sel" data-id="'+id+'" data-link="'+link+'">選擇</a> '+
+                    '<a href="javascript:;" class="g-c-del" data-id="'+id+'">刪除</a>'+
+                    '</p></div>';
+        return html;       
+    }
     //獲取圖檔列表
-    exports.url = 
     exports.getImgList = function(){
-        $.ajax({
-
-        });
+        var html = '';
+        if(!$dom.imgList.html()){
+            $.ajax({
+                url: $dom.reqUrl.val(),
+                dataType:'json',
+                type:'get',
+                success:function(info){
+                    console.log(info)
+                    if(info.length){
+                        for(var i in info){
+                            html += fillImg(info[i]['id'],info[i]['path']);
+                        }
+                        $dom.imgList.prepend(html);
+                    }
+                }
+            });
+        }
     }
     //獲取圖片
     exports.getImg = function($ele){
-        var link = $ele.data('link');
-        clearTimeout(showTip);
-        $dom.tip.fadeIn('fast');
-        showTip  = setTimeout(function(){
-            $dom.tip.fadeOut('fast');
-        },800)
-        return link;
+        var option = {
+            id:     $ele.data('id'),
+            url:    $ele.data('link')
+        }
+        return option;
     }
     //回調函數
     exports.onUploadSuccess = function(data){
         // 返回格式错误
         if(typeof data!='object') return;
 
-        if(data.status == 200){
-            var url   = 'http://image.dev.8591.com.hk/'+data.url;
-            var html  = '<div class="g-l-item">'+
-                        '<div class="g-l-imgbox"><img src="'+url+'"></div>'+
-                        '<p>'+
-                        '<a href="javascript:;" class="g-c-sel" data-link="'+url+'">選擇</a>'+
-                        '<a href="javascript:;" class="g-c-del" data-id="'+data.id+'">刪除</a>'+
-                        '</p></div>';
-            $dom.imgList.prepend(html);
+        if(data.code == 200){
+            $dom.imgList.prepend(fillImg(data.id,data.url));
         }
     }
     window.onUploadSuccess = exports.onUploadSuccess;
