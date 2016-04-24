@@ -36,13 +36,6 @@ class Type extends Common
         $all = Input::get('all/d',0);
         $res    = GoodsType::getstype($parent_id,$all);
         $res    = json_encode($res);
-        if (I('saveToConfig')) {
-            $config_file    = dirname($_SERVER['SCRIPT_FILENAME']).'/static/js/config/goodsType.js';
-        echo json_encode($res);
-            if (false===file_put_contents($config_file, "define(function (require, exports, module){\nreturn ".json_encode($res, JSON_UNESCAPED_UNICODE).";\n});")) {
-                return Response::error('更新配置失敗', '', U('index'));
-            }
-        }
     }
     public function add()
     {
@@ -124,11 +117,11 @@ class Type extends Common
     public function saveToConfig()
     {
         $res    = GoodsType::getstype(0,1);
-        $res    = json_encode($res);
         $config_file    = dirname($_SERVER['SCRIPT_FILENAME']).'/static/js/config/goodsType.js';
         if (false===file_put_contents($config_file, "define(function (require, exports, module){\nreturn ".json_encode($res, JSON_UNESCAPED_UNICODE).";\n});")) {
             return Response::error('更新配置失敗', '', U('index'));
         }else{
+            F('goodsType.inc', $res);
             return Response::success('更新配置成功', '', U('index'));
         }
     }
