@@ -14,9 +14,11 @@ class Publish extends Common
     // 選擇遊戲伺服商品類型
     public function select()
     {
+        $typeList = GoodsType::getstype(0,1);
         if (I('test')) {
-            echo json_encode(GoodsType::getstype(0,1));exit;
+            echo json_encode($typeList);exit;
         }
+        $this->assign('typeList',$typeList);
         return V();
     }
 
