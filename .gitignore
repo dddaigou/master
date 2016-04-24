@@ -1,4 +1,6 @@
 *.bat
+.phpintel
 app/runtime
 public/upload
 public/static/js/config
+public/static/images/goods

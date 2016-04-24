@@ -40,7 +40,7 @@ class Image extends Common
         //加載上傳類
         $config                 = [
             'maxSize'   => 1024*1024*3,     // 上传的文件大小限制 (0-不做限制)
-            'rootPath'  => './upload/',     // 保存根路径
+            'rootPath'  => './static/images/',     // 保存根路径
             'savePath'  => 'goods/',          // 保存根路径
         ];
         $Upload                 = new Upload($config);
