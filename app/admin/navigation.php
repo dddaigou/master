@@ -71,7 +71,7 @@ return [
                 'text'  => '商品管理',
                 'items' => [
                     ['id'=>'320', 'text'=>'类型管理', 'href'=>U('/goods.type/index')],
-                    ['id'=>'321', 'text'=>'点卡管理', 'href'=>U('/card/index')],
+                    ['id'=>'321', 'text'=>'品牌管理', 'href'=>U('/goods.brand/index')],
                     ['id'=>'322', 'text'=>'游戏管理', 'href'=>U('/game/index')],
                     ['id'=>'323', 'text'=>'商品管理', 'href'=>U('/goods/index')],
                 ]

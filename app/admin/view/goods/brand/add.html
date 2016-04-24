@@ -1,0 +1,27 @@
+{layout name='layout'}
+<form action="{:U()}" method="post" class="definewidth m20">
+<input type="hidden" name="id" value="{$row.id}" />
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td class="tableleft">名稱</td>
+            <td><input type="text" name="name" value="{$row.name}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">所属国家（地区）:</td>
+            <td><input type="text" name="county_id" value="{$row.country}" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">相关属性</td>
+            <td>
+                <label><input type="checkbox" name="status" value="1" {eq name="row.status" value="1" }checked{/eq} /> 隱藏</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                <a href='{:U("index")}' type="button" class="btn btn-success" name="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>
