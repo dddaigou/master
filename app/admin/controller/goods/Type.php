@@ -120,8 +120,23 @@ class Type extends Common
         if (false===file_put_contents($config_file, "define(function (require, exports, module){\nreturn ".json_encode($res, JSON_UNESCAPED_UNICODE).";\n});")) {
             return Response::error('更新配置失敗', '', U('index'));
         }else{
-            F('goodsType.inc', $res);
+            F('goodsType.inc', $this->addIdToKey($res));
             return Response::success('更新配置成功', '', U('index'));
         }
+    }
+    private function addIdToKey($array=[]){
+        if (empty($array)) {
+            return [];
+        }
+        $arr    = [];
+        foreach ($array as $k => $v) {
+            if (!empty($v['subType'])) {
+                $v['subType'] = $this->addIdToKey($v['subType']);
+            }
+            $id     = $v['id'];
+            unset($v['id']);
+            $arr[$id] = $v;
+        }
+        return $arr;
     }
 }
