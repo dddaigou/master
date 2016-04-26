@@ -86,7 +86,7 @@
         <textarea class="sb-content" placeholder="必填項"></textarea>
       </div>
     </div>
-    <div class="hk-btn hk-orange-btn publish-submit center-block">提交刊登</div>
+    <div class="hk-btn hk-orange-btn publish-submit center-block" data-success="{:U('goods.publish/complete@i')}">提交刊登</div>
   </div>
   {include file="index@view/public/img_gallery"}
   <input type="hidden" id="submitUrl" value="{:U('goods.publish/publish@i')}">

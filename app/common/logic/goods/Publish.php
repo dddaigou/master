@@ -13,7 +13,7 @@ class Publish
     protected $data         = [];
     protected $errno        = null;
     protected $error        = null;
-    protected $publish_limit= 5;
+    protected $publish_limit= 50;
 
     static public function instance($goods_type=1, $data=[])
     {
@@ -34,7 +34,7 @@ class Publish
             'post_time'     => date('Y-m-d H:i:s'),
             'extend'        => '',
             'images'        => '',
-            'description'   => '',
+            'detail'        => '',
         ], $data);
     }
 
@@ -63,12 +63,6 @@ class Publish
         if (!$this->_checkExtendData()) return false;
         // 是否會員有權限刊登
         if (!$this->_isSellerDenyPublish()) return false;
-        // 是否遊戲允許刊登
-        if (!$this->_isGameDenyPublish()) return false;
-        // 是否私服器允許刊登
-        if (!$this->_isGameServerDenyPublish()) return false;
-        // 是否商品類型禁止刊登
-        if (!$this->_isGoodsTypeDenyPublish()) return false;
         // 是否超出筆數限制
         if (!$this->_isUpdate() && $this->_isOverflowPublishLimit()) return false;
         return true;
@@ -147,10 +141,6 @@ class Publish
         $rules              = [
             ['type', '商品類型必須', 'require'],
             ['type', '商品類型格式不正確', 'number'],
-            ['game_id', '遊戲ID必須', 'require'],
-            ['game_id', '遊戲ID格式不正確', 'number'],
-            ['server_id', '伺服器ID必須', 'require'],
-            ['server_id', '伺服器ID格式不正確', 'number'],
             ['seller_id', '賣家ID必須', 'require'],
             ['seller_id', '專家ID格式不正確', 'number'],
             ['title', '商品標題必須', 'require'],
@@ -161,11 +151,7 @@ class Publish
             ['price', '價格必須', 'require'],
             ['price', '價格格式不正確', 'number'],
             ['price', '價格超出範圍', 'between', '10,200000'],
-            ['transfer_time', '承諾移交時間必須', 'require'],
-            ['transfer_time', '承諾移交時間超出範圍', 'in', '15,30,60,120,300,1440'],
-            ['description', '商品詳情必須', 'require'],
-            ['post_client', '刊登客戶端必須', 'require'],
-            ['post_client', '刊登客戶端超出範圍', 'in', 'web,mobile,android,ios'],
+            ['detail', '商品詳情必須', 'require'],
             ['post_ip', '刊登IP必須', 'require'],
             ['post_ip', '刊登IP格式不正確', 'ipv4'],
         ];
@@ -175,7 +161,7 @@ class Publish
             return false;
         }
         // 後期數據處理
-        $this->data['description']      = stripcslashes($this->data['description']);
+        $this->data['detail']      = stripcslashes($this->data['detail']);
         // 是否有圖片
         if (!empty($this->data['images'])) {
             $this->data['badges']       .= ',image';
@@ -233,45 +219,6 @@ class Publish
         return true;
     }
 
-    protected function _isGameDenyPublish()
-    {
-        if (Game::isDenyPublish($this->game_id)) {
-            $this->errno    = 120;
-            $this->error    = '遊戲被禁止刊登';
-            return false;
-        }
-        // 是否支持类型
-        $goods_types        = D('Game')->getFieldById($this->game_id, 'goods_type');
-        if (empty($goods_types)) return true;
-        // 當前遊戲不支持當前商品類型刊登
-        if (!in_array($this->type, explode(',', $goods_types))) {
-            $this->errno    = 123;
-            $this->error    = '當前遊戲不支持當前商品類型刊登';
-            return false;
-        }
-        return true;
-    }
-
-    protected function _isGameServerDenyPublish()
-    {
-        if (GameServer::isDenyPublish($this->server_id)) {
-            $this->errno    = 121;
-            $this->error    = '伺服器被禁止刊登';
-            return false;
-        }
-        return true;
-    }
-
-    protected function _isGoodsTypeDenyPublish()
-    {
-        if (GoodsType::isDenyPublish($this->type)) {
-            $this->errno    = 130;
-            $this->error    = '當前類型被禁止刊登';
-            return false;
-        }
-        return true;
-    }
-
     protected function _isOverflowPublishLimit()
     {
         // 不限制筆數
@@ -279,8 +226,6 @@ class Publish
         // 統計當前筆數
         $map                = [
             'type'      => $this->type,
-            'game_id'   => $this->game_id,
-            'server_id' => $this->server_id,
             'seller_id' => $this->seller_id,
         ];
         $publish_limit      = $this->publish_limit;

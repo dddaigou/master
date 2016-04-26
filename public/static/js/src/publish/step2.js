@@ -91,7 +91,6 @@ define(function (require, exports, module) {
             }
         });
         submitData.images = imgJson+'';
-        console.log(submitData)
     }
     //提交data
     var submitData ={
@@ -119,7 +118,11 @@ define(function (require, exports, module) {
             dataType:   'json',
             data:       submitData,
             success:    function(info){
-                console.log(info)
+                if (info.code==1) {
+                    location.href=$dom.subBtn.data('success')+'?id=47'
+                }else{
+                    alert(info.msg)
+                }
             }
         });
     }
